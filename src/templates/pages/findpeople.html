@@ -1,0 +1,227 @@
+<!--
+ Created on Sun Oct 09 2022
+
+ The MIT License (MIT)
+ Copyright (c) 2022 Rohit Geddam, Arun Kumar, Teja Varma, Kiron Jayesh, Shandler Mason
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial
+ portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
+{% extends 'base.html' %}
+{% include 'components/navbar.html' %}
+{% load crispy_forms_tags %}
+
+{% load static %}
+<link rel="stylesheet" href="{% static 'styles/style.css' %}">
+
+
+{% load crispy_forms_tags %}
+
+
+{% block title %}Find People{% endblock %}
+{% block content %}
+
+<!-- <div class="container"> -->
+
+<div id="find-people-container">
+
+    <div style="width: 20%;">
+        <form method="get">
+            {{ filter.form|crispy }}
+            <input class="btn btn-danger w-100" type="submit" value="Wolf Filter" />
+        </form>
+    </div>
+
+    <div id="right-section">
+        {% if filter.qs %}
+
+        <div class="cards-container">
+            {% for profile in filter.qs %}
+
+            {% if profile.name != ""%}
+
+            <div class="card shadow-sm bg-body rounded card-style" data-bs-toggle="modal"
+                data-bs-target="#profile-modal-{{profile.id}}" style="max-width: 540px;">
+                <div class="row g-0" style="padding: 0 16px">
+                    <div class="col-md-4"
+                        style="display:flex; flex-direction: column; justify-content:center; align-items:center; text-align: center; padding: 18px;">
+                        <img class="rounded-circle" alt="80x80" src="{{profile.profile_photo.url}}" width=150 height=150
+                            class="img-fluid rounded-start" alt="{{profile.name}}">
+                        <h5 class="card-title">{{profile.name}}</h5>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <div class="card-body">
+
+                                <p class="card-text"><b>Gender:</b>{{profile.gender}}</p>
+                                <p class="card-text"><b>DOB:</b> {{profile.birth_date}}</p>
+                                <p class="card-text"><b>Diet: </b>{{profile.diet}}</p>
+                                <p class="card-text"><b>Hometown: </b> {{profile.hometown}}</p>
+                                <p class="card-text"><b>Country: </b> {{profile.country.name}}</p>
+                                <p class="card-text"><b>Degree: </b> {{profile.degree}}</p>
+                                <p class="card-text"><b>Course: </b> {{profile.course}}</p>
+                                <!-- <a href="#" class="btn btn-primary"></a> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="card shadow-sm bg-body rounded card-style" data-bs-toggle="modal"
+                data-bs-target="#profile-modal-{{profile.id}}">
+                <div class="card-body">
+                    <h4 class="card-title">{{profile.name}}</h4>
+                    <p class="card-text"><b>Gender:</b>{{profile.gender}}</p>
+                    <p class="card-text"><b>DOB:</b> {{profile.birth_date}}</p>
+                    <p class="card-text"><b>Diet: </b>{{profile.diet}}</p>
+                    <p class="card-text"><b>Hometown: </b> {{profile.hometown}}</p>
+                    <p class="card-text"><b>Country: </b> {{profile.country.name}}</p>
+                    <p class="card-text"><b>Degree: </b> {{profile.degree}}</p>
+                    <p class="card-text"><b>Course: </b> {{profile.course}}</p>
+                    <a href="#" class="btn btn-primary"></a>
+                </div>
+            </div> -->
+            {% endif %}
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="profile-modal-{{profile.id}}" tabindex="-1"
+                aria-labelledby="profile-modal-{{profile.id}}" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header" style="display: flex; align-items: center;">
+                            <img class="rounded-circle" alt="80x80" src="{{profile.profile_photo.url}}"
+                                class="img-fluid rounded-start" alt="{{profile.name}}" width="200" height="200">
+                            <h5 class="modal-title">{{profile.name}}</h5>
+                            <button type="button" class="btn-close" style="align-self: flex-start;"
+                                data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div>
+                                <b>Email: </b>{{profile.user.email}}<br>
+                            </div>
+                            <div>
+                                <b>Bio: </b>{{profile.bio}}<br>
+                            </div>
+                            <div>
+                                <b>Gender: </b>{{profile.gender}}<br>
+                            </div>
+                            <div>
+                                <div>
+                                    <b>DOB: </b>{{profile.birth_date}}<br>
+                                </div>
+                                <b>Diet: </b>{{profile.diet}}<br>
+                            </div>
+                            <div>
+                                <b>Hometown: </b>{{profile.hometown}}<br>
+                            </div>
+                            <div>
+                                <b>Country: </b>{{profile.country.name}}<br>
+                            </div>
+                            <div>
+                                <b>Degree: </b>{{profile.degree}}<br>
+                            </div>
+                            <div>
+                                <b>Course: </b>{{profile.course}}<br>
+                            </div>
+                            <div style="margin-top: 32px;">
+                                <div class="card-title"><b>Preferences</b></div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Gender: </b>{{profile.preference_gender}}
+                                    </li>
+
+                                    <li class="list-group-item"><b>Degree: </b>{{profile.preference_degree}}
+                                    </li>
+                                    <li class="list-group-item"><b>Course: </b>{{profile.preference_course}}
+                                    </li>
+                                    <li class="list-group-item"><b>Diet: </b>{{profile.preference_diet}}</li>
+                                    <li class="list-group-item"><b>Country: </b>{{profile.preference_country.name}}
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+
+
+                        </div>
+                        <!-- <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+        {% else %}
+        <H4>We got no profiles to show you 😅.</H4>
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+<!-- Button trigger modal -->
+
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal"> -->
+<!-- Launch demo modal
+</button> -->
+
+
+
+
+<style>
+    #find-people-container {
+        display: flex;
+        padding: 16px;
+        height: 95vh;
+    }
+
+    #right-section {
+        width: 80%;
+        margin-left: 16px;
+        overflow-y: scroll;
+
+    }
+
+    .cards-container {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+        padding: 0;
+    }
+
+    .card-style {
+        margin: 8px;
+        border: 1px solid #cc0000;
+    }
+
+    .card:hover {
+        transform: rotate(0.002turn);
+        cursor: pointer;
+        background-color: #cc0000;
+        color: white;
+    }
+</style>
+
+
+
+<!-- </div> -->
+
+{% endblock %}
