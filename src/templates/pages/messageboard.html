@@ -1,27 +1,66 @@
+<!--
+ Created on Nov 14 2022
+
+ The MIT License (MIT)
+ Copyright (c) 2022
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy of this software
+ and associated documentation files (the "Software"), to deal in the Software without restriction,
+ including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all copies or substantial
+ portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
+ TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+-->
+
 {% extends 'base.html' %}
 {% include 'components/navbar.html' %}
+{% load static %}
+
+
+
 {% load crispy_forms_tags %}
-<head>
-<link rel="stylesheet" type="text/css" href="src/static/css/messageboard.css" media=”screen” />
-</head>
-<script src="src/static/js/messageboard.js"></script>
-<div class="wrap">
-<div>
+
+
+
+{% block title %}
+Message Board
+{% endblock %}
+
+{% block content %}
+
+
+<div style="display: flex; justify-content: center; margin: 32px 16px; height: 95vh; overflow-y: scroll;">
+    <div id="section-right" style="width: 20%;">
+      <div>
   <h1 class="title"> Filters </h1>
 
   <div class="byUser">
-    <span class="title">All post by User : </span>
+    <span class="title">All posts by User : </span>
     <select id="selUser">
       <option value=0>All</option>
     </select>
     <button type="button" onclick="searchUser()">Search </button>
   </div>
 </div>
+    </div>
 
+    <div id="section-left" style="width: 80%">
+        <div class="container">
+            <div class="card">
+                <div class="card-body">
+                  <div><h1 class="title">Posts</h1></div>
+                  <p class="reply"></p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="wrap">
-  <div><h1 class="title">Posts</h1></div>
-  <p class="reply">
-  </p>
-</div>
+{% endblock%}
