@@ -308,11 +308,11 @@ Our current release does not provide you with a mechanism to remove your data di
 
 
 ## Contact us:
-Rohit Geddam: sgeddam2@ncsu.edu </br>
-Arun Kumar Ramesh - arames25@ncsu.edu </br> 
-Kiron Jayesh - kjayesh@ncsu.edu </br>
-Sai Krishna Teja Varma - smanthe@ncsu.edu </br>
-Shandler Mason - samason4@ncsu.edu </br>
+M M Abid Naziri - mnaziri@ncsu.edu </br>
+Nikhil Mehra - nmehra2@ncsu.edu </br> 
+Bella Samuelsson - insamuel@ncsu.edu </br>
+Parth Katlana - pkatlan@ncsu.edu </br>
+Heidi Reichert - hreiche@ncsu.edu </br>
 
 ## License:
 Distributed under the MIT License. See `LICENSE` for more information
