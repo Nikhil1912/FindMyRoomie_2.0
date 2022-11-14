@@ -19,6 +19,10 @@
  TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 -->
 
+<!--
+Much of the HTML/JS design from https://codepen.io/Viruz/pen/QadJxO
+-->
+
 {% extends 'base.html' %}
 {% include 'components/navbar.html' %}
 {% load static %}
@@ -35,6 +39,8 @@ Message Board
 
 {% block content %}
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="\static\js\messageboard.js"></script>
 
 <div style="display: flex; justify-content: center; margin: 32px 16px; height: 95vh; overflow-y: scroll;">
     <div id="section-right" style="width: 20%;">
