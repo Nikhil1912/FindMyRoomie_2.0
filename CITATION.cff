@@ -1,23 +1,24 @@
-cff-version: 1.2.0
+cff-version: 1.0.0
 message: "If you use this software, please cite it as below."
 authors:
-- family-names: "Geddam"
-  given-names: "Rohit"
-  orcid: "https://orcid.org/0000-0002-1010-1070"
-- family-names: "Ramesh"
-  given-names: "Arun Kumar"
-  orcid: "https://orcid.org/0000-0002-1949-5926"
-- family-names: "Jayesh"
-  given-names: "Kiron"
-  orcid: "https://orcid.org/0000-0003-4527-0568" 
-- family-names: "Manthena"
-  given-names: "Sai Krishna Teja Varma"
-  orcid: "https://orcid.org/0000-0002-4511-6934"
-- family-names: "Mason"
-  given-names: "Shandler"
-  orcid: "https://orcid.org/0000-0003-0587-4527"
-title: "FindMyRoomie"
-version: 3.0
-doi: 10.5281/zenodo.1234
-date-released: 2022-10-04
-url: "https://github.com/rohitgeddam/FindMyRoomie"
+- family-names: "Reichert"
+  given-names: "Heidi"
+  orcid: "https://orcid.org/0000-0002-1814-3611"
+- family-names: "Mehra"
+  given-names: "Nikhil"
+  orcid: "https://orcid.org/0000-0002-2243-1456"
+- family-names: "Samuelsson"
+  given-names: "Bella"
+  orcid: "https://orcid.org/0000-0003-0129-9529"
+- family-names: "Katlana"
+  given-names: "Parth"
+  orcid: "https://orcid.org/0000-0003-0129-9529"
+- family-names: "Naziri"
+  given-names: "Abid"
+  orcid: "https://orcid.org/0000-0002-3499-5283"
+title: "FindMyRoomie_2.0"
+version: 1.0.0
+date-released: 2022-11-14
+url: "https://github.com/Nikhil1912/FindMyRoomie_2.0"
+title: "FindMyRoomie2.0"
+doi: 10.5281/zenodo.7308277
