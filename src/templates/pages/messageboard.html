@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% include 'components/navbar.html' %}
+{% load crispy_forms_tags %}
+<head>
+<link rel="stylesheet" type="text/css" href="src/static/css/messageboard.css" media=”screen” />
+</head>
+<script src="src/static/js/messageboard.js"></script>
+<div class="wrap">
+<div>
+  <h1 class="title"> Filters </h1>
+
+  <div class="byUser">
+    <span class="title">All post by User : </span>
+    <select id="selUser">
+      <option value=0>All</option>
+    </select>
+    <button type="button" onclick="searchUser()">Search </button>
+  </div>
+</div>
+
+</div>
+
+<div class="wrap">
+  <div><h1 class="title">Posts</h1></div>
+  <p class="reply">
+  </p>
+</div>

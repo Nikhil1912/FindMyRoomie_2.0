@@ -159,6 +159,13 @@ def findpeople(request):
     return render(request, "pages/findpeople.html", {"filter": f})
 
 
+# this is new
+@login_required()
+def messageboard(request):
+    """Render message board page"""
+    return render(request, "pages/messageboard.html")
+
+
 @login_required()
 def myroom(request):
     """Render Myroom page based on Profile Completion"""

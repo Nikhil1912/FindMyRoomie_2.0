@@ -1,0 +1,32 @@
+body{
+	font: 12px Arial,Tahoma,Helvetica,FreeSans,sans-serif;
+	text-transform: inherit;
+	color: #333;
+	background: #e7edee;
+	width: 100%;
+}
+.wrap{
+	width: 720px;
+	margin: 15px auto;
+	padding: 15px 10px;
+	background: white;
+	border: 2px solid #DBDBDB;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+.title, .userName {
+  font-weight:700;
+}
+
+.post {
+  border-bottom: 1px solid black;
+  padding-bottom: 5px;
+}
+
+.post .title{
+  font-style:italic;
+}
+.post .body{
+  margin-top:5px;
+}
