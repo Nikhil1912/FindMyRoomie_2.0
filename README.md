@@ -8,7 +8,6 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub issues](https://img.shields.io/github/issues/Nikhil1912/FindMyRoomie_2.0.svg)](https://GitHub.com/rohitgeddam/FindMyRoomie_2.0/issues/)
 [![GitHub issues-closed](https://img.shields.io/github/issues-closed/Nikhil1912/FindMyRoomie_2.0.svg)](https://GitHub.com/Nikhil1912/FindMyRoomie_2.0/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub version](https://img.shields.io/github/v/release/Nikhil1912/FindMyRoomie_2.0)](https://github.com/Nikhil1912/FindMyRoomie_2.0/releases)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ![fmr](https://user-images.githubusercontent.com/73664200/194788342-99dac017-b22c-40cc-911a-32bbf8826f5d.png)
