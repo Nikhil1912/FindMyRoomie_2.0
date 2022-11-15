@@ -87,14 +87,14 @@ class Profile(models.Model):
     DEGREE_CHOICES = (
         (DEGREE_BS, "Bachelors Program (BS)"),
         (DEGREE_MS, "Masters Program (MS)"),
-        (DEGREE_PHD, "Post Docterate (PHD)"),
+        (DEGREE_PHD, "Doctoral Program (PhD)"),
     )
 
     COURSE_CHOICES = (
         (COURSE_CS, "Computer Science"),
-        (COURSE_CE, "Computer Engg."),
-        (COURSE_EE, "Electrical Engg."),
-        (COURSE_MEC, "Mechanical Engg."),
+        (COURSE_CE, "Computer Eng."),
+        (COURSE_EE, "Electrical Eng."),
+        (COURSE_MEC, "Mechanical Eng."),
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -110,7 +110,7 @@ class Profile(models.Model):
         (NO_PREF, "No Preference"),
         (DEGREE_BS, "Bachelors Program (BS)"),
         (DEGREE_MS, "Masters Program (MS)"),
-        (DEGREE_PHD, "Post Docterate (PHD)"),
+        (DEGREE_PHD, "Doctoral Program (PhD)"),
     )
 
     PREF_DIET_CHOICES = (
@@ -122,9 +122,9 @@ class Profile(models.Model):
     PREF_COURSE_CHOICES = (
         (NO_PREF, "No Preference"),
         (COURSE_CS, "Computer Science"),
-        (COURSE_CE, "Computer Engg."),
-        (COURSE_EE, "Electrical Engg."),
-        (COURSE_MEC, "Mechanical Engg."),
+        (COURSE_CE, "Computer Eng."),
+        (COURSE_EE, "Electrical Eng."),
+        (COURSE_MEC, "Mechanical Eng."),
     )
 
     """User Profile Model"""
