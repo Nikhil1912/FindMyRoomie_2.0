@@ -35,6 +35,7 @@ urlpatterns = [
     path("profile/edit/", views.profile_edit, name="profile_edit"),
     path("findpeople/", views.findpeople, name="findpeople"),
     path("myroom/", views.myroom, name="myroom"),
+    path("messageboard/", views.messageboard, name="messageboard"),
     path("logout/", views.user_logout, name="user_logout"),
     path(
         "about",
