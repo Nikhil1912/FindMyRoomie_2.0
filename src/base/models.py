@@ -75,6 +75,18 @@ class Profile(models.Model):
     COURSE_EE = "Electrical Engineering"
     COURSE_MEC = "Mechanical Engineering"
 
+    CITY_RALEIGH = "Raleigh"
+    CITY_DURHAM = "Durham"
+    CITY_CARY = "Cary"
+    CITY_OTHER = "Other"
+
+    ROOMS_2 = "2"
+    ROOMS_3 = "3"
+    ROOMS_4 = "4"
+    ROOMS_5 = "5"
+    ROOMS_6 = "6"
+    ROOMS_OTHER = "Other"
+
     BLANK = "--"
     NO_PREF = "No Preference"
 
@@ -95,6 +107,22 @@ class Profile(models.Model):
         (COURSE_CE, "Computer Eng."),
         (COURSE_EE, "Electrical Eng."),
         (COURSE_MEC, "Mechanical Eng."),
+    )
+
+    CITY_CHOICES = (
+        (CITY_RALEIGH, "Raleigh"),
+        (CITY_DURHAM, "Durham"),
+        (CITY_CARY, "Cary"),
+        (CITY_OTHER, "Other"),
+    )
+
+    NUM_ROOMS_CHOICES = (
+        (ROOMS_2, "2"),
+        (ROOMS_3, "3"),
+        (ROOMS_4, "4"),
+        (ROOMS_5, "5"),
+        (ROOMS_6, "6"),
+        (ROOMS_OTHER, "Other"),
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -127,6 +155,39 @@ class Profile(models.Model):
         (COURSE_MEC, "Mechanical Eng."),
     )
 
+    # PREF_CITY_CHOICES = (
+    #     (NO_PREF, "No Preference"),
+    #     (CITY_RALEIGH, "Raleigh"),
+    #     (CITY_DURHAM, "Durham"),
+    #     (CITY_CARY, "Cary"),
+    #     (CITY_OTHER, "Other")
+    # )
+    #
+    # PREF_NUM_ROOMATES_CHOICES = (
+    #     (NO_PREF, "No Preference"),
+    #     (ROOMATES_1, "1"),
+    #     (ROOMATES_2, "2"),
+    #     (ROOMATES_3, "3"),
+    #     (ROOMATES_4, "4"),
+    #     (ROOMATES_5, "5"),
+    #     (ROOMATES_6, "6"),
+    # )
+    #
+    # PREF_RENT_CHOICES = (
+    #     (NO_PREF, "No Preference"),
+    #     (RENT_1, "$0"),
+    #     (RENT_2, "$200"),
+    #     (RENT_3, "$300"),
+    #     (RENT_3, "$400"),
+    #     (RENT_3, "$500"),
+    #     (RENT_3, "$600"),
+    #     (RENT_3, "$700"),
+    #     (RENT_3, "$800"),
+    #     (RENT_3, "$900"),
+    #     (RENT_3, "$300"),
+    #
+    # )
+
     """User Profile Model"""
     name = models.CharField(max_length=100, default="")
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
@@ -152,6 +213,18 @@ class Profile(models.Model):
         default="default.png", upload_to="profile_pics"
     )
 
+    # property details
+
+    have_property = models.BooleanField(default=False) # todo create issue so that if this is selected the other fields drop down
+    city = models.CharField(
+        max_length=128, choices=CITY_CHOICES, blank=True
+    )
+    general_location_details = models.TextField(max_length=500, blank=True)
+    number_of_rooms = models.CharField(
+        max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
+    )
+    rent_per_person = models.PositiveIntegerField(blank=True)
+
     # preferences
 
     preference_gender = models.CharField(
@@ -169,6 +242,15 @@ class Profile(models.Model):
     preference_course = models.CharField(
         max_length=128, choices=PREF_COURSE_CHOICES, default=NO_PREF
     )
+    # preference_city = models.CharField(
+    #     max_length=128, choices=PREF_CITY_CHOICES, default=NO_PREF
+    # )
+    # preference_number_of_roomates = models.CharField(
+    #     max_length=128, choices=PREF_NUM_ROOMATES_CHOICES, default=NO_PREF
+    # )
+    #
+    # preference_rent_min = models.PositiveIntegerField(default=0)
+    # preference_rent_max = models.PositiveIntegerField(default=None)
 
     email_confirmed = models.BooleanField(default=False)
 
