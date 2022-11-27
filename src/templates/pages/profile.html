@@ -74,6 +74,19 @@ My Profile
 
             <div class="card" style="margin-top: 32px;">
                 <div class="card-body">
+                    <div class="card-title"><b>Property Details</b></div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>Already have an apartment: </b>{{profile.have_property}}</li>
+                    <li class="list-group-item"><b>City: </b>{{profile.city}}</li>
+                    <li class="list-group-item"><b>General Details: </b>{{profile.general_location_details}}</li>
+                    <li class="list-group-item"><b>Number of Rooms Total: </b>{{profile.number_of_rooms}}</li>
+                    <li class="list-group-item"><b>Rent per Person: </b>{{profile.rent_per_person}}</li>
+                </ul>
+            </div>
+
+            <div class="card" style="margin-top: 32px;">
+                <div class="card-body">
                     <div class="card-title"><b>Preferences</b></div>
                 </div>
                 <ul class="list-group list-group-flush">
