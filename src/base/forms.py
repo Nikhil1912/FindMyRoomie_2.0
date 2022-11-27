@@ -101,7 +101,6 @@ class ProfileForm(forms.ModelForm):
             "course",
             "hometown",
             "country",
-            "have_property",
         ]
         widgets = {
             "birth_date": forms.DateInput(
