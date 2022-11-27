@@ -223,7 +223,7 @@ class Profile(models.Model):
     number_of_rooms = models.CharField(
         max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
     )
-    rent_per_person = models.PositiveIntegerField(blank=True)
+    rent_per_person = models.PositiveIntegerField(default=0, blank=True)
 
     # preferences
 
