@@ -213,7 +213,7 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "major",
+                    "course",
                     models.CharField(
                         blank=True,
                         choices=[

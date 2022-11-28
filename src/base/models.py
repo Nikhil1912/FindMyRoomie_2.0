@@ -76,6 +76,11 @@ class Profile(models.Model):
     DRUG_ATTITUDES_SMOKING = "I smoke, but don't drink"
     DRUG_ATTITUDES_NONE = "I don't drink or smoke"
 
+    COURSE_CS = "Computer Science"
+    COURSE_CE = "Computer Engineering"
+    COURSE_EE = "Electrical Engineering"
+    COURSE_MEC = "Mechanical Engineering"
+
     DEGREE_BS = "Bachelors"
     DEGREE_MS = "Masters"
     DEGREE_PHD = "Phd"
@@ -114,6 +119,13 @@ class Profile(models.Model):
         (DEGREE_BS, "Bachelors Program (BS)"),
         (DEGREE_MS, "Masters Program (MS)"),
         (DEGREE_PHD, "Doctoral Program (PhD)"),
+    )
+
+    COURSE_CHOICES = (
+        (COURSE_CS, "Computer Science"),
+        (COURSE_CE, "Computer Eng."),
+        (COURSE_EE, "Electrical Eng."),
+        (COURSE_MEC, "Mechanical Eng."),
     )
 
     PREF_GENDER_CHOICES = (
@@ -174,7 +186,7 @@ class Profile(models.Model):
         max_length=128, choices=DEGREE_CHOICES, blank=True
     )
     country = CountryField(blank_label="Select Country", blank=True)
-    major = models.CharField(
+    course = models.CharField(
         max_length=128, choices=COURSE_CHOICES, blank=True
     )
     visibility = models.BooleanField(default=True)

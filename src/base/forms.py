@@ -75,7 +75,7 @@ class ProfileForm(forms.ModelForm):
             "birth_date",
             "gender",
             "degree",
-            "major",
+            "course",
             "hometown",
             "country",
             "study_conditions",
@@ -98,7 +98,7 @@ class ProfileForm(forms.ModelForm):
             "sleep_habits",
             "drug_attitude",
             "degree",
-            "major",
+            "course",
             "country"
         ]
         widgets = {
