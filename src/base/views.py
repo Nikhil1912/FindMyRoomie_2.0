@@ -46,10 +46,14 @@ from django.utils.http import urlsafe_base64_decode
 from base.tokens import account_activation_token
 from django.views import View
 import requests
+import requests_cache
 import pandas as pd
 import warnings
 
 warnings.filterwarnings('ignore')
+requests_cache.install_cache('scrapper_cache',
+                             backend='sqlite',
+                             expire_after=3600)
 
 
 class ActivateAccount(View):
