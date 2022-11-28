@@ -182,7 +182,7 @@ class Profile(models.Model):
 
     # property details
 
-    have_property = models.BooleanField(default=False) # todo create issue so that if this is selected the other fields drop down
+    have_property = models.BooleanField(default=False)
     city = models.CharField(
         max_length=128, choices=CITY_CHOICES, blank=True
     )
