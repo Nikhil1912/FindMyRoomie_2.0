@@ -57,7 +57,7 @@ class ActivateAccount(View):
             user = None
 
         if user is not None and account_activation_token.check_token(
-            user, token
+                user, token
         ):
             user.is_active = True
             user.profile.email_confirmed = True
@@ -176,6 +176,20 @@ def myroom(request):
     matches = matchings(request.user)
 
     return render(request, "pages/myroom.html", {"matches": matches})
+
+
+@login_required()
+def scrapper_search_page(request):
+    """Render the scrapper search bar"""
+    return render(request, "pages/scrapper_search_page.html")
+
+
+@login_required()
+def scrapper_search(request):
+    """Render apartment search on Zillow"""
+    results = []
+    query = "Raleigh"
+    return render(request, 'pages/scrapper_search.html', {'query': query, 'results': results})
 
 
 def user_logout(request):
