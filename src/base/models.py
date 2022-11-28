@@ -65,7 +65,7 @@ class Profile(models.Model):
 
     DEGREE_BS = "Bachelors"
     DEGREE_MS = "Masters"
-    DEGREE_PHD = "Phd"
+    DEGREE_PHD = "PhD"
 
     DIET_VEG = "Vegetarian"
     DIET_NON_VEG = "Non Vegetarian"
