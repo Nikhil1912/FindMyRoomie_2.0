@@ -74,28 +74,32 @@ class ProfileForm(forms.ModelForm):
             "profile_photo",
             "birth_date",
             "gender",
-            "diet",
             "degree",
-            "course",
+            "major",
             "hometown",
             "country",
+            "study_conditions",
+            "sleep_habits",
+            "drug_attitude",
             "visibility",
             "preference_gender",
-            "preference_degree",
-            "preference_diet",
-            "preference_country",
-            "preference_course",
+            "preference_study_conditions",
+            "preference_sleep_habits",
+            "preference_cleanliness",
+            "preference_drug_attitude",
+            "preference_degree"
         )
         required_fields = [
             "name",
             "bio",
             "birth_date",
             "gender",
-            "diet",
+            "study_conditions",
+            "sleep_habits",
+            "drug_attitude",
             "degree",
-            "course",
-            "hometown",
-            "country",
+            "major",
+            "country"
         ]
         widgets = {
             "birth_date": forms.DateInput(

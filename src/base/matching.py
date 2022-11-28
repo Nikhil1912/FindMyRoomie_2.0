@@ -38,7 +38,7 @@ def similarity_score(gender, study_conditions, sleep_habits, cleanliness, drug_a
         WEIGHTS["gender"] * gender
         + WEIGHTS["study_conditions"] * study_conditions
         + WEIGHTS["sleep_habits"] * sleep_habits
-        + WEIGHTS["cleanliness"] * course
+        + WEIGHTS["cleanliness"] * cleanliness
         + WEIGHTS["drug_attitude"] * drug_attitude
         + WEIGHTS["degree"] * degree
     )

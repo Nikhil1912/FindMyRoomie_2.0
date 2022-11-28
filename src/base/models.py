@@ -63,17 +63,22 @@ class Profile(models.Model):
     GENDER_FEMALE = "Female"
     GENDER_OTHER = "Other"
 
+    STUDY_CONDITIONS_QUIET = "Calm and quiet"
+    STUDY_CONDITIONS_LOUD = "Energetic and excited"
+
+    SLEEP_HABITS_LATE = "Night owl (I prefer to sleep late)"
+    SLEEP_HABITS_EARLY = "Early bird (I prefer to sleep early)"
+
+    CLEANLINESS_NEAT = "I tend to be neat"
+    CLEANLINESS_MESSY = "I tend to be messy"
+
+    DRUG_ATTITUDES_ALCOHOL = "I drink, but don't smoke"
+    DRUG_ATTITUDES_SMOKING = "I smoke, but don't drink"
+    DRUG_ATTITUDES_NONE = "I don't drink or smoke"
+
     DEGREE_BS = "Bachelors"
     DEGREE_MS = "Masters"
     DEGREE_PHD = "Phd"
-
-    DIET_VEG = "Vegetarian"
-    DIET_NON_VEG = "Non Vegetarian"
-
-    COURSE_CS = "Computer Science"
-    COURSE_CE = "Computer Engineering"
-    COURSE_EE = "Electrical Engineering"
-    COURSE_MEC = "Mechanical Engineering"
 
     BLANK = "--"
     NO_PREF = "No Preference"
@@ -84,20 +89,32 @@ class Profile(models.Model):
         (GENDER_OTHER, "Other"),
     )
 
+    STUDY_CONDITIONS_CHOICES = (
+        (STUDY_CONDITIONS_QUIET, "Calm and quiet"),
+        (STUDY_CONDITIONS_LOUD, "Energetic and excited"),
+    )
+
+    SLEEP_HABITS_CHOICES = (
+        (SLEEP_HABITS_LATE, "Night owl (I prefer to sleep late)"),
+        (SLEEP_HABITS_EARLY, "Early bird (I prefer to sleep early)"),
+    )
+
+    CLEANLINESS_CHOICES = (
+        (CLEANLINESS_NEAT, "I tend to be neat"),
+        (CLEANLINESS_MESSY, "I tend to be messy"),
+    )
+
+    DRUG_ATTITUDE_CHOICES = (
+        (DRUG_ATTITUDES_ALCOHOL, "I drink, but don't smoke"),
+        (DRUG_ATTITUDES_SMOKING, "I smoke, but don't drink"),
+        (DRUG_ATTITUDES_NONE, "I don't drink or smoke"),
+    )
+
     DEGREE_CHOICES = (
         (DEGREE_BS, "Bachelors Program (BS)"),
         (DEGREE_MS, "Masters Program (MS)"),
         (DEGREE_PHD, "Doctoral Program (PhD)"),
     )
-
-    COURSE_CHOICES = (
-        (COURSE_CS, "Computer Science"),
-        (COURSE_CE, "Computer Eng."),
-        (COURSE_EE, "Electrical Eng."),
-        (COURSE_MEC, "Mechanical Eng."),
-    )
-
-    DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
 
     PREF_GENDER_CHOICES = (
         (NO_PREF, "No Preference"),
@@ -113,18 +130,25 @@ class Profile(models.Model):
         (DEGREE_PHD, "Doctoral Program (PhD)"),
     )
 
-    PREF_DIET_CHOICES = (
-        (NO_PREF, "No Preference"),
-        (DIET_VEG, "Veg"),
-        (DIET_NON_VEG, "Non Veg"),
+    PREF_STUDY_CONDITIONS_CHOICES = (
+        (STUDY_CONDITIONS_QUIET, "Calm and quiet"),
+        (STUDY_CONDITIONS_LOUD, "Energetic and excited"),
     )
 
-    PREF_COURSE_CHOICES = (
-        (NO_PREF, "No Preference"),
-        (COURSE_CS, "Computer Science"),
-        (COURSE_CE, "Computer Eng."),
-        (COURSE_EE, "Electrical Eng."),
-        (COURSE_MEC, "Mechanical Eng."),
+    PREF_SLEEP_HABITS_CHOICES = (
+        (SLEEP_HABITS_LATE, "Night owl (I prefer to sleep late)"),
+        (SLEEP_HABITS_EARLY, "Early bird (I prefer to sleep early)"),
+    )
+
+    PREF_CLEANLINESS_CHOICES = (
+        (CLEANLINESS_NEAT, "I tend to be neat"),
+        (CLEANLINESS_MESSY, "I tend to be messy"),
+    )
+
+    PREF_DRUG_ATTITUDE_CHOICES = (
+        (DRUG_ATTITUDES_ALCOHOL, "I drink, but don't smoke"),
+        (DRUG_ATTITUDES_SMOKING, "I smoke, but don't drink"),
+        (DRUG_ATTITUDES_NONE, "I don't drink or smoke"),
     )
 
     """User Profile Model"""
@@ -137,15 +161,22 @@ class Profile(models.Model):
     gender = models.CharField(
         max_length=128, choices=GENDER_CHOICES, blank=True
     )
+    study_conditions = models.CharField(
+        max_length=128, choices=STUDY_CONDITIONS_CHOICES, blank=True
+    )
+    sleep_habits = models.CharField(
+        max_length=128, choices=SLEEP_HABITS_CHOICES, blank=True
+    )
+    drug_attitude = models.CharField(
+        max_length=128, choices=DRUG_ATTITUDE_CHOICES, blank=True
+    )
     degree = models.CharField(
         max_length=128, choices=DEGREE_CHOICES, blank=True
     )
-    diet = models.CharField(max_length=128, choices=DIET_CHOICES, blank=True)
     country = CountryField(blank_label="Select Country", blank=True)
-    course = models.CharField(
+    major = models.CharField(
         max_length=128, choices=COURSE_CHOICES, blank=True
     )
-
     visibility = models.BooleanField(default=True)
     is_profile_complete = models.BooleanField(default=False)
     profile_photo = models.ImageField(
@@ -157,19 +188,21 @@ class Profile(models.Model):
     preference_gender = models.CharField(
         max_length=128, choices=PREF_GENDER_CHOICES, default=NO_PREF
     )
+    preference_study_conditions = models.CharField(
+        max_length=128, choices=PREF_STUDY_CONDITIONS_CHOICES, default=NO_PREF
+    )
+    preference_sleep_habits = models.CharField(
+        max_length=128, choices=PREF_SLEEP_HABITS_CHOICES, default=NO_PREF
+    )
+    preference_cleanliness = models.CharField(
+        max_length=128, choices=PREF_CLEANLINESS_CHOICES, default=NO_PREF
+    )
+    preference_drug_attitude = models.CharField(
+        max_length=128, choices=PREF_DRUG_ATTITUDE_CHOICES, default=NO_PREF
+    )
     preference_degree = models.CharField(
         max_length=128, choices=PREF_DEGREE_CHOICES, default=NO_PREF
     )
-    preference_diet = models.CharField(
-        max_length=128, choices=PREF_DIET_CHOICES, default=NO_PREF
-    )
-    preference_country = CountryField(
-        blank_label="No Preference", blank=True, default="No Preference"
-    )
-    preference_course = models.CharField(
-        max_length=128, choices=PREF_COURSE_CHOICES, default=NO_PREF
-    )
-
     email_confirmed = models.BooleanField(default=False)
 
     def __str__(self):
