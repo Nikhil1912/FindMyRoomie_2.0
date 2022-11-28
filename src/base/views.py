@@ -201,7 +201,8 @@ def search(request):
     results = []
     if request.method == "GET":
         query = request.GET.get('search')
-        if query != "":
+        query = query.lower()
+        if query != "" and all(x.isalpha() or x.isspace() for x in query):
             req_headers = {
                 'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
                           '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
