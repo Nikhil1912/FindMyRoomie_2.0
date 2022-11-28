@@ -29,35 +29,46 @@ class TestModels(TestCase):
             "admin@ncsu.edu", "password"
         )
         profile = Profile.objects.get(user=user)
-        profile.name = "Arun"
-        profile.bio = "Loving Life"
+        profile.name = "Heidi"
+        profile.bio = "Cooler than cool, or ice cold"
         profile.birth_date = "2000-11-15"
-        profile.hometown = "Chennai"
-        profile.gender = "Male"
+        profile.hometown = "Ontario"
+        profile.gender = "Female"
+        profile.study_conditions = "Calm and quiet"
+        profile.sleep_habits = "Night owl (I prefer to sleep late)"
+        profile.cleanliness = "I tend to be messy"
+        profile.drug_attitude = "I drink, but don't smoke"
         profile.degree = "Masters Program (MS)"
-        profile.diet = "Non Veg"
-        profile.country = "India"
+        profile.country = "Canada"
         profile.visibility = "True"
-        profile.preference_gender = "Male"
-        profile.preference_country = "India"
+        profile.preference_gender = "Female"
+        profile.preference_country = "Jordan"
         profile.preference_degree = "Masters Program (MS)"
+        profile.preference_study_conditions = "Calm and quiet"
+        profile.preference_sleep_habits = "Night owl (I prefer to sleep late)"
+        profile.preference_cleanliness = "I tend to be neat"
+        profile.preference_drug_attitude = "I drink, but don't smoke"
         profile.preference_course = "Computer Science"
-        profile.preference_diet = "Non Veg"
         profile.is_profile_complete = "True"
         profile.save()
         self.assertEqual(user.email, "admin@ncsu.edu")
-        self.assertEqual(profile.name, "Arun")
-        self.assertEqual(profile.bio, "Loving Life")
+        self.assertEqual(profile.name, "Heidi")
+        self.assertEqual(profile.bio, "Cooler than cool, or ice cold")
         self.assertEqual(profile.birth_date, "2000-11-15")
-        self.assertEqual(profile.hometown, "Chennai")
-        self.assertEqual(profile.gender, "Male")
+        self.assertEqual(profile.hometown, "Ontario")
+        self.assertEqual(profile.gender, "Female")
         self.assertEqual(profile.degree, "Masters Program (MS)")
-        self.assertEqual(profile.diet, "Non Veg")
-        self.assertEqual(profile.country, "India")
+        self.assertEqual(profile.study_conditions, "Calm and quiet")
+        self.assertEqual(profile.sleep_habits, "Night owl (I prefer to sleep late)")
+        self.assertEqual(profile.drug_attitude, "I drink, but don't smoke")
+        self.assertEqual(profile.country, "Canada")
         self.assertEqual(profile.visibility, "True")
-        self.assertEqual(profile.preference_gender, "Male")
-        self.assertEqual(profile.preference_country, "India")
+        self.assertEqual(profile.preference_gender, "Female")
+        self.assertEqual(profile.preference_country, "Jordan")
         self.assertEqual(profile.preference_degree, "Masters Program (MS)")
         self.assertEqual(profile.preference_course, "Computer Science")
-        self.assertEqual(profile.preference_diet, "Non Veg")
+        self.assertEqual(profile.preference_study_conditions, "Calm and quiet")
+        self.assertEqual(profile.preference_sleep_habits, "Night owl (I prefer to sleep late)")
+        self.assertEqual(profile.preference_cleanliness, "I tend to be neat")
+        self.assertEqual(profile.preference_drug_attitude, "I drink, but don't smoke")
         self.assertEqual(profile.is_profile_complete, "True")

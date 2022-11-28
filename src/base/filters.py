@@ -28,7 +28,7 @@ class ProfileFilter(django_filters.FilterSet):
 
     class Meta:
         model = Profile
-        fields = ["gender", "degree", "course", "diet", "country"]
+        fields = ["gender", "study_conditions", "sleep_habits", "cleanliness", "drug_attitude", "degree"]
 
         # @property
         # def qs(self):

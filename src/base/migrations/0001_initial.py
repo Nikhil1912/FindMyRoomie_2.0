@@ -156,18 +156,52 @@ class Migration(migrations.Migration):
                         choices=[
                             ("Bachelors", "Bachelors Program (BS)"),
                             ("Masters", "Masters Program (MS)"),
-                            ("Phd", "Post Docterate (PHD)"),
+                            ("PhD", "Doctoral Program (PhD)"),
                         ],
                         max_length=128,
                     ),
                 ),
                 (
-                    "diet",
+                    "study_conditions",
                     models.CharField(
                         blank=True,
                         choices=[
-                            ("Vegetarian", "Veg"),
-                            ("Non Vegetarian", "Non Veg"),
+                            ("Calm", "Calm and quiet"),
+                            ("Energetic", "Energetic and excited"),
+                        ],
+                        max_length=128,
+                    ),
+                ),
+                (
+                    "sleep_habits",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Night owl", "Night owl (I prefer to sleep late)"),
+                            ("Early bird", "Early bird (I prefer to sleep early)"),
+                        ],
+                        max_length=128,
+                    ),
+                ),
+                (
+                    "cleanliness",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Neat", "I tend to be neat"),
+                            ("Messy", "I tend to be messy"),
+                        ],
+                        max_length=128,
+                    ),
+                ),
+                (
+                    "drug_attitude",
+                    models.CharField(
+                        blank=True,
+                        choices=[
+                            ("Drink but don't smoke", "I drink, but don't smoke"),
+                            ("Smoke but don't drink", "I smoke, but don't drink"),
+                            ("Neither", "I don't drink or smoke")
                         ],
                         max_length=128,
                     ),
@@ -179,14 +213,14 @@ class Migration(migrations.Migration):
                     ),
                 ),
                 (
-                    "course",
+                    "major",
                     models.CharField(
                         blank=True,
                         choices=[
                             ("Computer Science", "Computer Science"),
-                            ("Computer Engineering", "Computer Engg."),
-                            ("Electrical Engineering", "Electrical Engg."),
-                            ("Mechanical Engineering", "Mechanical Engg."),
+                            ("Computer Engineering", "Computer Eng."),
+                            ("Electrical Engineering", "Electrical Eng."),
+                            ("Mechanical Engineering", "Mechanical Eng."),
                         ],
                         max_length=128,
                     ),
@@ -219,19 +253,56 @@ class Migration(migrations.Migration):
                             ("No Preference", "No Preference"),
                             ("Bachelors", "Bachelors Program (BS)"),
                             ("Masters", "Masters Program (MS)"),
-                            ("Phd", "Post Docterate (PHD)"),
+                            ("PhD", "Doctoral Program (PhD)"),
                         ],
                         default="No Preference",
                         max_length=128,
                     ),
                 ),
                 (
-                    "preference_diet",
+                    "preference_study_conditions",
                     models.CharField(
                         choices=[
                             ("No Preference", "No Preference"),
-                            ("Vegetarian", "Veg"),
-                            ("Non Vegetarian", "Non Veg"),
+                            ("Calm", "Calm and quiet"),
+                            ("Energetic", "Energetic and excited"),
+                        ],
+                        default="No Preference",
+                        max_length=128,
+                    ),
+                ),
+                (
+                    "preference_sleep_habits",
+                    models.CharField(
+                        choices=[
+                            ("No Preference", "No Preference"),
+                            ("Night owl", "Night owl (I prefer to sleep late)"),
+                            ("Early bird", "Early bird (I prefer to sleep early)"),
+                        ],
+                        default="No Preference",
+                        max_length=128,
+                    ),
+                ),
+                (
+                    "preference_cleanliness",
+                    models.CharField(
+                        choices=[
+                            ("No Preference", "No Preference"),
+                            ("Neat", "I tend to be neat"),
+                            ("Messy", "I tend to be messy"),
+                        ],
+                        default="No Preference",
+                        max_length=128,
+                    ),
+                ),
+                (
+                    "preference_drug_attitude",
+                    models.CharField(
+                        choices=[
+                            ("No Preference", "No Preference"),
+                            ("Drink but don't smoke", "I drink, but don't smoke"),
+                            ("Smoke but don't drink", "I smoke, but don't drink"),
+                            ("Neither", "I don't drink or smoke"),
                         ],
                         default="No Preference",
                         max_length=128,
@@ -241,20 +312,6 @@ class Migration(migrations.Migration):
                     "preference_country",
                     django_countries.fields.CountryField(
                         blank=True, default="No Preference", max_length=2
-                    ),
-                ),
-                (
-                    "preference_course",
-                    models.CharField(
-                        choices=[
-                            ("No Preference", "No Preference"),
-                            ("Computer Science", "Computer Science"),
-                            ("Computer Engineering", "Computer Engg."),
-                            ("Electrical Engineering", "Electrical Engg."),
-                            ("Mechanical Engineering", "Mechanical Engg."),
-                        ],
-                        default="No Preference",
-                        max_length=128,
                     ),
                 ),
                 (
