@@ -23,22 +23,24 @@ from base.models import Profile
 
 
 WEIGHTS = {
-    "gender": 0.4,
-    "diet": 0.3,
-    "degree": 0.1,
-    "course": 0.1,
-    "country": 0.1,
+    "gender": 0.3,
+    "study_conditions": 0.2,
+    "sleep_habits": 0.1,
+    "cleanliness": 0.15,
+    "drug_attitude": 0.2,
+    "degree": 0.05,
 }
 
 
-def similarity_score(gender, degree, diet, country, course):
+def similarity_score(gender, study_conditions, sleep_habits, cleanliness, drug_attitude, degree):
     """Calculate the similarity score"""
     score = (
         WEIGHTS["gender"] * gender
-        + WEIGHTS["diet"] * diet
+        + WEIGHTS["study_conditions"] * study_conditions
+        + WEIGHTS["sleep_habits"] * sleep_habits
+        + WEIGHTS["cleanliness"] * course
+        + WEIGHTS["drug_attitude"] * drug_attitude
         + WEIGHTS["degree"] * degree
-        + WEIGHTS["country"] * country
-        + WEIGHTS["course"] * course
     )
 
     return score
@@ -60,32 +62,38 @@ def matchings(current_user):
             or user_profile.preference_gender == profile.NO_PREF
             else 0
         )
+        study_conditions = (
+            1
+            if user_profile.study_conditions == profile.study_conditions
+            or user_profile.preference_study_conditions == profile.NO_PREF
+            else 0
+        )
+        sleep_habits = (
+            1
+            if user_profile.sleep_habits == profile.sleep_habits
+            or user_profile.sleep_habits == profile.NO_PREF
+            else 0
+        )
+        cleanliness = (
+            1
+            if user_profile.cleanliness == profile.cleanliness
+            or user_profile.preference_cleanliness == profile.NO_PREF
+            else 0
+        )
+        drug_attitude = (
+            1
+            if user_profile.drug_attitude == profile.drug_attitude
+            or user_profile.preference_drug_attitude == profile.NO_PREF
+            else 0
+        )
         degree = (
             1
             if user_profile.preference_degree == profile.degree
             or user_profile.preference_degree == profile.NO_PREF
             else 0
         )
-        diet = (
-            1
-            if user_profile.preference_diet == profile.diet
-            or user_profile.preference_diet == profile.NO_PREF
-            else 0
-        )
-        country = (
-            1
-            if user_profile.preference_country == profile.country
-            or user_profile.preference_country == profile.NO_PREF
-            else 0
-        )
-        course = (
-            1
-            if user_profile.preference_course == profile.course
-            or user_profile.preference_course == profile.NO_PREF
-            else 0
-        )
 
-        score = similarity_score(gender, degree, diet, country, course)
+        score = similarity_score(gender, study_conditions, sleep_habits, cleanliness, drug_attitude, degree)
 
         if score > 0.5:
             match_list.append((profile, score))
