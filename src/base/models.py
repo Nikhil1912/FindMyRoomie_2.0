@@ -75,6 +75,18 @@ class Profile(models.Model):
     COURSE_EE = "Electrical Engineering"
     COURSE_MEC = "Mechanical Engineering"
 
+    CITY_RALEIGH = "Raleigh"
+    CITY_DURHAM = "Durham"
+    CITY_CARY = "Cary"
+    CITY_OTHER = "Other"
+
+    ROOMS_2 = "2"
+    ROOMS_3 = "3"
+    ROOMS_4 = "4"
+    ROOMS_5 = "5"
+    ROOMS_6 = "6"
+    ROOMS_OTHER = "Other"
+
     BLANK = "--"
     NO_PREF = "No Preference"
 
@@ -95,6 +107,22 @@ class Profile(models.Model):
         (COURSE_CE, "Computer Eng."),
         (COURSE_EE, "Electrical Eng."),
         (COURSE_MEC, "Mechanical Eng."),
+    )
+
+    CITY_CHOICES = (
+        (CITY_RALEIGH, "Raleigh"),
+        (CITY_DURHAM, "Durham"),
+        (CITY_CARY, "Cary"),
+        (CITY_OTHER, "Other"),
+    )
+
+    NUM_ROOMS_CHOICES = (
+        (ROOMS_2, "2"),
+        (ROOMS_3, "3"),
+        (ROOMS_4, "4"),
+        (ROOMS_5, "5"),
+        (ROOMS_6, "6"),
+        (ROOMS_OTHER, "Other"),
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -151,6 +179,18 @@ class Profile(models.Model):
     profile_photo = models.ImageField(
         default="default.png", upload_to="profile_pics"
     )
+
+    # property details
+
+    have_property = models.BooleanField(default=False)
+    city = models.CharField(
+        max_length=128, choices=CITY_CHOICES, blank=True
+    )
+    general_location_details = models.TextField(max_length=500, blank=True)
+    number_of_rooms = models.CharField(
+        max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
+    )
+    rent_per_person = models.PositiveIntegerField(default=0, blank=True)
 
     # preferences
 

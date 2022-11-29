@@ -38,6 +38,11 @@ class TestModels(TestCase):
         profile.diet = "Non Veg"
         profile.country = "India"
         profile.visibility = "True"
+        profile.have_property = "True"
+        profile.city = "Cary"
+        profile.general_location_details = "Located near the mall and great take-out food."
+        profile.number_of_rooms = "3"
+        profile.rent_per_person = 200
         profile.preference_gender = "Male"
         profile.preference_country = "India"
         profile.preference_degree = "Masters Program (MS)"
@@ -55,6 +60,11 @@ class TestModels(TestCase):
         self.assertEqual(profile.diet, "Non Veg")
         self.assertEqual(profile.country, "India")
         self.assertEqual(profile.visibility, "True")
+        self.assertEqual(profile.have_property, "True")
+        self.assertEqual(profile.city, "Cary")
+        self.assertEqual(profile.general_location_details, "Located near the mall and great take-out food.")
+        self.assertEqual(profile.number_of_rooms, "3")
+        self.assertEqual(profile.rent_per_person, 200)
         self.assertEqual(profile.preference_gender, "Male")
         self.assertEqual(profile.preference_country, "India")
         self.assertEqual(profile.preference_degree, "Masters Program (MS)")
