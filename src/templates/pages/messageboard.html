@@ -60,6 +60,7 @@ Message Board
                     <li class="list-group-item">
                       <p class="post">
                         <div class="title"><b>{{ post.title }}</b></div>
+                        <div class="user" style="font-size: 12px; font-style: italic;">by {{ post.user.first_name }} {{ post.user.last_name }}</div>
                         <div class="body">{{ post.description }}</div>
                       </p>
                     </li>                      
