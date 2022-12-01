@@ -49,37 +49,83 @@ Message Board
 
 {% if query %}
 
+    {% if results %}
            <h2>
 
-           {% with results.count as total_results %}
-
-           Found {{ total_results }} result{{ total_results|pluralize }}
-
-           {% endwith %}
+           Found {{ results|length }} results
 
            </h2>
 
+            <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Address</th>
+                    <th>Beds</th>
+                    <th>Baths</th>
+                    <th>Area</th>
+                    <th>Price</th>
+                    <th>Zestimate</th>
+                    <th>Best Deal</th>
+                </tr>
+            </thead>
+            <tbody>
+
+    {% endif %}
+
    {% for id, add, beds, baths, area, price, zestimate, best_deal in results %}
-       <div>
-       {{ id }}
-       {{ add }}
-       {{ beds }}
-       {{ baths }}
-       {{ area }}
-       {{ price }}
-       {{ zestimate }}
-       {{ best_deal }}
-       </div>
-       <br>
+       <tr>
+           <td>{{ id }}</td>
+           <td>{{ add }}</td>
+           <td>{{ beds }}</td>
+           <td>{{ baths }}</td>
+           <td>{{ area }}</td>
+           <td>{{ price }}</td>
+           <td>{{ zestimate }}</td>
+           <td>{{ best_deal }}</td>
+       </tr>
 
    {% empty %}
 
    <h3>No results found.</h3>
 
    {% endfor %}
+</tbody>
+</table>
 
   {% endif %}
    </div>
 </div>
+
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .styled-table thead tr {
+        background-color: #009879;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+</style>
 
 {% endblock%}
