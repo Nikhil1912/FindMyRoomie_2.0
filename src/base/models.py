@@ -180,12 +180,12 @@ class ForumPost(models.Model):
     """Model for Forum Posts"""
     title = models.TextField(max_length=500, blank=True)
     description = models.TextField(blank=True)
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 
 class Comment(models.Model):
     """Model for Comments"""
     body = models.TextField(blank=True)
-    user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
     forum_post = models.ForeignKey(ForumPost, on_delete=models.CASCADE)
 
 @receiver(post_save, sender=get_user_model())

@@ -25,7 +25,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileForm, SignUpForm
-from .models import Profile
+from .models import Profile, ForumPost, Comment
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 
@@ -34,7 +34,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .filters import ProfileFilter
+from .filters import ProfileFilter, PostFilter
 from .matching import matchings
 
 from django.contrib.auth import login
@@ -163,7 +163,9 @@ def findpeople(request):
 @login_required()
 def messageboard(request):
     """Render message board page"""
-    return render(request, "pages/messageboard.html")
+    forum_posts = ForumPost.objects.all()
+    post_filter = PostFilter(request.GET, queryset=forum_posts)
+    return render(request, "pages/messageboard.html", {"filter": post_filter})
 
 
 @login_required()

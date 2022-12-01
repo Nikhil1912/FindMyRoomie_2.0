@@ -39,30 +39,32 @@ Message Board
 
 {% block content %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="\static\js\messageboard.js"></script>
 
 <div style="display: flex; justify-content: center; margin: 32px 16px; height: 95vh; overflow-y: scroll;">
     <div id="section-right" style="width: 20%;">
-      <div>
-  <h1 class="title"> Filters </h1>
-
-  <div class="byUser">
-    <span class="title">All posts by User : </span>
-    <select id="selUser">
-      <option value=0>All</option>
-    </select>
-    <button type="button" onclick="searchUser()">Search </button>
-  </div>
-</div>
+      <div style="width: 100%;">
+        <form method="get">
+            {{ filter.form|crispy }}
+            <input class="btn btn-danger w-100" type="submit" value="Filter" />
+        </form>
+      </div>
     </div>
 
     <div id="section-left" style="width: 80%">
         <div class="container">
             <div class="card">
-                <div class="card-body">
-                  <div><h1 class="title">Posts</h1></div>
-                  <p class="reply"></p>
+                <div class="card-body">                  
+                  <div><h1 class="card-title">Posts:</h1></div>
+                    <ul class="list-group list-group-flush">
+                    {% for post in filter.qs %}
+                    <li class="list-group-item">
+                      <p class="post">
+                        <div class="title"><b>{{ post.title }}</b></div>
+                        <div class="body">{{ post.description }}</div>
+                      </p>
+                    </li>                      
+                    {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
