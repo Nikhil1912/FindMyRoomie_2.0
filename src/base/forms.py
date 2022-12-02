@@ -112,3 +112,66 @@ class ProfileForm(forms.ModelForm):
                 },
             )
         }
+
+class SubleasingForm(forms.ModelForm):
+    """Subleasing Form"""
+
+    #lease_start_date = forms.DateField(widget=AdminDateWidget)
+
+    def __init__(self, *args, **kwargs):
+        super(SubleasingForm, self).__init__(*args, **kwargs)
+        for bound_field in self:
+            if (
+                hasattr(bound_field, "field")
+                and bound_field.name in self.Meta.required_fields
+            ):
+                bound_field.field.widget.attrs["required"] = "required"
+
+    class Meta:
+        model = Profile
+        fields = (
+            "name",
+            "general_location_details",
+            "apartment_photo",
+            "lease_start_date",
+            "lease_end_date",
+            "number_of_roommates",
+            "roommate_details",
+            "furnished",
+            "gender",
+            "diet",
+            "hometown",
+            "country",
+            "city",
+            "number_of_rooms",
+            "rent_per_person",
+        )
+        required_fields = [
+            "name",
+            "bio",
+            "lease_start_date",
+            "lease_end_date",
+            "gender",
+            "diet",
+            "hometown",
+            "country",
+        ]
+        widgets = {
+            "lease_start_date": forms.DateInput(
+                format=("%Y-%m-%d"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Select Date",
+                    "type": "date",
+                },
+            ),
+        
+            "lease_end_date": forms.DateInput(
+                format=("%Y-%m-%d"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Select Date",
+                    "type": "date",
+                },
+            )
+        }

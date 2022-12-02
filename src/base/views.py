@@ -26,7 +26,7 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, SignUpForm
+from .forms import ProfileForm, SignUpForm, SubleasingForm
 from .models import Profile
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
@@ -188,6 +188,26 @@ def myroom(request):
 
     return render(request, "pages/myroom.html", {"matches": matches})
 
+@login_required()
+def subleasing(request):
+    """Render Subleasing Page"""
+    profile = Profile.objects.get(user=request.user)
+
+    if request.method == "POST":
+        form = SubleasingForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            p = form.save(commit=False)
+            p.is_profile_complete = True
+            print(p.profile_photo)
+            p.save()
+
+            return redirect("scrapper_page")
+
+    person = Profile.objects.all()
+    form = SubleasingForm(instance=profile)
+    return render(
+        request, "pages/subleasing.html", {"form": form, "profiles": person}
+    )
 
 @login_required()
 def scrapper_search_page(request):

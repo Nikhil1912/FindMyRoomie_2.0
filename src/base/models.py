@@ -87,6 +87,13 @@ class Profile(models.Model):
     ROOMS_6 = "6"
     ROOMS_OTHER = "Other"
 
+    ROOMMATES_2 = "2"
+    ROOMMATES_3 = "3"
+    ROOMMATES_4 = "4"
+    ROOMMATES_5 = "5"
+    ROOMMATES_6 = "6"
+    ROOMMATES_OTHER = "Other"
+
     BLANK = "--"
     NO_PREF = "No Preference"
 
@@ -123,6 +130,15 @@ class Profile(models.Model):
         (ROOMS_5, "5"),
         (ROOMS_6, "6"),
         (ROOMS_OTHER, "Other"),
+    )
+
+    NUM_ROOMMATES_CHOICES = (
+        (ROOMMATES_2, "2"),
+        (ROOMMATES_3, "3"),
+        (ROOMMATES_4, "4"),
+        (ROOMMATES_5, "5"),
+        (ROOMMATES_6, "6"),
+        (ROOMMATES_OTHER, "Other"),
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -190,7 +206,22 @@ class Profile(models.Model):
     number_of_rooms = models.CharField(
         max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
     )
+
+    number_of_roommates = models.CharField(max_length=100, choices=NUM_ROOMMATES_CHOICES, blank=True)
+
+    roommate_details = models.TextField(max_length=500, blank=True)
+
+    apartment_photo = models.ImageField(
+        default="default.png", upload_to="profile_pics"
+    )
+
+    furnished = models.BooleanField(default=True)
+
     rent_per_person = models.PositiveIntegerField(default=0, blank=True)
+
+    lease_start_date = models.DateField(null=True, blank=True)
+
+    lease_end_date = models.DateField(null=True, blank=True)
 
     # preferences
 

@@ -67,9 +67,18 @@ Message Board
         <button type="submit" class="btn btn-success btn-lg mb-2">Search</button>
 
    </form>
-
+   <div id ="sublease" class="card-body">
+     <a href="{% url 'subleasing' %}" class="btn btn-danger" style="width: 200%;">Sub lease</a>
+   </div> 
         <br/>
 </div>
 </div>
-
+<style>
+     #sublease {
+          width: 100;
+          right: 20;
+          top:10;
+          position: absolute;
+     }
+</style>     
 {% endblock%}
