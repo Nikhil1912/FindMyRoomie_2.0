@@ -199,15 +199,15 @@ class Profile(models.Model):
     # property details
 
     have_property = models.BooleanField(default=False)
-    city = models.CharField(
-        max_length=128, choices=CITY_CHOICES, blank=True
-    )
+    city = models.CharField(max_length=128, choices=CITY_CHOICES, blank=True)
     general_location_details = models.TextField(max_length=500, blank=True)
     number_of_rooms = models.CharField(
         max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
     )
 
-    number_of_roommates = models.CharField(max_length=100, choices=NUM_ROOMMATES_CHOICES, blank=True)
+    number_of_roommates = models.CharField(
+        max_length=100, choices=NUM_ROOMMATES_CHOICES, blank=True
+    )
 
     roommate_details = models.TextField(max_length=500, blank=True)
 

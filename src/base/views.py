@@ -50,10 +50,10 @@ import requests_cache
 import pandas as pd
 import warnings
 
-warnings.filterwarnings('ignore')
-requests_cache.install_cache('scrapper_cache',
-                             backend='sqlite',
-                             expire_after=3600)
+warnings.filterwarnings("ignore")
+requests_cache.install_cache(
+    "scrapper_cache", backend="sqlite", expire_after=3600
+)
 
 
 class ActivateAccount(View):
@@ -68,7 +68,7 @@ class ActivateAccount(View):
             user = None
 
         if user is not None and account_activation_token.check_token(
-                user, token
+            user, token
         ):
             user.is_active = True
             user.profile.email_confirmed = True
@@ -188,6 +188,7 @@ def myroom(request):
 
     return render(request, "pages/myroom.html", {"matches": matches})
 
+
 @login_required()
 def subleasing(request):
     """Render Subleasing Page"""
@@ -209,6 +210,7 @@ def subleasing(request):
         request, "pages/subleasing.html", {"form": form, "profiles": person}
     )
 
+
 @login_required()
 def scrapper_search_page(request):
     """Render the scrapper search bar"""
@@ -220,17 +222,17 @@ def search(request):
     """Render apartment search on Zillow"""
     results = []
     if request.method == "GET":
-        query = request.GET.get('search')
+        query = request.GET.get("search")
         query = query.lower()
         if query != "" and all(x.isalpha() or x.isspace() for x in query):
             req_headers = {
-                'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,'
-                          '*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-                'accept-encoding': 'gzip, deflate, br',
-                'accept-language': 'en-US,en;q=0.9',
-                'upgrade-insecure-requests': '1',
-                'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) '
-                              'Chrome/107.0.0.0 Safari/537.36 '
+                "accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,"
+                "*/*;q=0.8,application/signed-exchange;v=b3;q=0.9",
+                "accept-encoding": "gzip, deflate, br",
+                "accept-language": "en-US,en;q=0.9",
+                "upgrade-insecure-requests": "1",
+                "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/107.0.0.0 Safari/537.36 ",
             }
 
             with requests.Session() as s:
@@ -240,34 +242,62 @@ def search(request):
                 # Pages 1 - 10
                 for i in range(1, 11):
                     if i != 1:
-                        url = 'https://www.zillow.com/homes/for_rent/' + query + '/' + str(i) + '_p/'
+                        url = (
+                            "https://www.zillow.com/homes/for_rent/"
+                            + query
+                            + "/"
+                            + str(i)
+                            + "_p/"
+                        )
                     else:
-                        url = 'https://www.zillow.com/homes/for_rent/' + query
+                        url = "https://www.zillow.com/homes/for_rent/" + query
                     req = s.get(url, headers=req_headers)
-                    data = json.loads(re.search(r'!--(\{"queryState".*?)-->', req.text).group(1))
+                    data = json.loads(
+                        re.search(
+                            r'!--(\{"queryState".*?)-->', req.text
+                        ).group(1)
+                    )
                     data_list.append(data)
 
                 df = pd.DataFrame()
 
                 def make_frame(frame):
                     for i in data_list:
-                        for item in i['cat1']['searchResults']['listResults']:
+                        for item in i["cat1"]["searchResults"]["listResults"]:
                             frame = frame.append(item, ignore_index=True)
                     return frame
 
                 df = make_frame(df)
 
-                df = df.drop('hdpData', 1)
+                df = df.drop("hdpData", 1)
 
-                df = df.drop_duplicates(subset='zpid', keep="last")
+                df = df.drop_duplicates(subset="zpid", keep="last")
 
-                df['zestimate'] = df['zestimate'].fillna(0)
-                df['best_deal'] = df['unformattedPrice'] - df['zestimate']
-                df = df.sort_values(by='best_deal', ascending=True)
+                df["zestimate"] = df["zestimate"].fillna(0)
+                df["best_deal"] = df["unformattedPrice"] - df["zestimate"]
+                df = df.sort_values(by="best_deal", ascending=True)
 
-                results = df[['id', 'address', 'beds', 'baths', 'area', 'price', 'zestimate', 'best_deal']].head(
-                    20).values.tolist()
-    return render(request, 'pages/scrapper_search.html', {'query': query, 'results': results})
+                results = (
+                    df[
+                        [
+                            "id",
+                            "address",
+                            "beds",
+                            "baths",
+                            "area",
+                            "price",
+                            "zestimate",
+                            "best_deal",
+                        ]
+                    ]
+                    .head(20)
+                    .values.tolist()
+                )
+    return render(
+        request,
+        "pages/scrapper_search.html",
+        {"query": query, "results": results},
+    )
 
 
 def user_logout(request):

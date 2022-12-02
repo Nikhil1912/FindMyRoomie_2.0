@@ -113,10 +113,11 @@ class ProfileForm(forms.ModelForm):
             )
         }
 
+
 class SubleasingForm(forms.ModelForm):
     """Subleasing Form"""
 
-    #lease_start_date = forms.DateField(widget=AdminDateWidget)
+    # lease_start_date = forms.DateField(widget=AdminDateWidget)
 
     def __init__(self, *args, **kwargs):
         super(SubleasingForm, self).__init__(*args, **kwargs)
@@ -165,7 +166,6 @@ class SubleasingForm(forms.ModelForm):
                     "type": "date",
                 },
             ),
-        
             "lease_end_date": forms.DateInput(
                 format=("%Y-%m-%d"),
                 attrs={
@@ -173,5 +173,5 @@ class SubleasingForm(forms.ModelForm):
                     "placeholder": "Select Date",
                     "type": "date",
                 },
-            )
+            ),
         }
