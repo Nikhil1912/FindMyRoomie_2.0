@@ -27,7 +27,6 @@ from django.contrib.auth import get_user_model
 
 from django_countries.fields import CountryField
 
-
 from django.contrib.auth.models import AbstractUser
 
 from .managers import CustomUserManager
@@ -217,7 +216,6 @@ class Profile(models.Model):
         (DRUG_BOTH, "Drink and smoke"),
         (DRUG_NEITHER, "Neither"),
     )
-
 
     """User Profile Model"""
     name = models.CharField(max_length=100, default="")
