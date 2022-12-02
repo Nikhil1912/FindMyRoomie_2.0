@@ -40,6 +40,7 @@ Message Board
 {% block content %}
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<link rel="stylesheet" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
 
 <br/></br/>
 
@@ -49,37 +50,81 @@ Message Board
 
 {% if query %}
 
+    {% if results %}
            <h2>
 
-           {% with results.count as total_results %}
-
-           Found {{ total_results }} result{{ total_results|pluralize }}
-
-           {% endwith %}
+           Found {{ results|length }} results
 
            </h2>
 
-   {% for id, add, beds, baths, area, price, zestimate, best_deal in results %}
-       <div>
-       {{ id }}
-       {{ add }}
-       {{ beds }}
-       {{ baths }}
-       {{ area }}
-       {{ price }}
-       {{ zestimate }}
-       {{ best_deal }}
-       </div>
-       <br>
+            <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Address</th>
+                    <th>Beds</th>
+                    <th>Baths</th>
+                    <th>Area</th>
+                    <th>Price</th>
+                    <th>Zestimate</th>
+                    <th>Link</th>
+                </tr>
+            </thead>
+            <tbody>
+
+    {% endif %}
+
+   {% for detailUrl, add, beds, baths, area, price, zestimate in results %}
+       <tr>
+           <td>{{ add }}</td>
+           <td>{{ beds }}</td>
+           <td>{{ baths }}</td>
+           <td>{{ area }}</td>
+           <td>{{ price }}</td>
+           <td>{{ zestimate }}</td>
+           <td><a href={{ detailUrl }} target="_blank"><i class="fa fa-external-link" aria-hidden="true"></i></a></td>
+       </tr>
 
    {% empty %}
 
    <h3>No results found.</h3>
 
    {% endfor %}
+</tbody>
+</table>
 
   {% endif %}
    </div>
 </div>
+
+<style>
+    .styled-table {
+        border-collapse: collapse;
+        margin: 25px 0;
+        font-size: 0.9em;
+        font-family: sans-serif;
+        min-width: 400px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    }
+    .styled-table thead tr {
+        background-color: #708090;
+        color: #ffffff;
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 15px;
+    }
+    .styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+    }
+
+    .styled-table tbody tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+    }
+
+    .styled-table tbody tr:last-of-type {
+        border-bottom: 2px solid #708090;
+    }
+</style>
 
 {% endblock%}

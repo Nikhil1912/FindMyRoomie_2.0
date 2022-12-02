@@ -17,12 +17,6 @@
 <b>FindMyRoomie</b> is a Web Application that provides a platform for lonely wolves (NC State students) to find roommates of their preference. The stakes are high when it comes to finding your best roommate because this relationship starts with a living relationship :sweat_smile:. We understand how stressful this can be, especially if you are moving to a new city or country. FindMyRoomie is a one-stop solution to your roommate finding needs. Our software has functionalities that allow you to filter and choose your ideal roommate. But if that is too much work for you, we also provide roommate suggestions based on your preferences! Any <b> NC State student </b> could sign up with their NC State Email address from any corner of the world on our website and begin searching for roommates. 
 </p>
 
-<p align = "center">
-<img width = "400", src = "https://user-images.githubusercontent.com/52373569/194727868-201a036a-c400-46c4-b359-98777a92ce86.gif">
-</p>
-
-<sub>GIF from [Tenor](https://tenor.com/view/roommate-rachel-monica-friends-gif-7920313).<sub>
-
 The software is free for use by anyone, and we also welcome any contributions to improve our software. Please read our [CONTRIBUTING.md](https://github.com/rohitgeddam/FindMyRoomie/blob/main/CONTRIBUTING.md) file for more details). If you would like to cite our repository, please check our [CITATION.cff](https://github.com/rohitgeddam/FindMyRoomie/blob/main/CITATION.cff) file.
 
 
@@ -155,11 +149,14 @@ https://user-images.githubusercontent.com/73664200/194796923-61d96045-04f9-4e2d-
 
     `pip install -r requirements.txt`
 
-#### 4. Create .env file at ./src/config/
-   <p align = "justify">
-   To setup Gmail to send emails to users, first create a new Gmail account. Under 'Manage your Google Account', enable 2-Step Verification and select suitable app and device under 'App passwords'. Copy the key that is generated and paste it under tha EMAIL_HOST_PASSWORD. Enter the email in EMAIL_HOST_USER.
-   </p>
-   Paste this in the .env file.
+#### 4. Create a working email address
+   To setup Gmail to send emails to users, first create a new Gmail account. Under 'Manage your Google Account', enable 2-Step Verification and select suitable app and device under 'App passwords'. Check out [this link](https://support.google.com/accounts/answer/185833?hl=en) for more information. Save the key that is generated, as well as the email that was used.
+   
+   Create a new text file called .env as follows:
+   
+    `./src/config/.env`
+    
+Then paste in the following information:
    
 ```
 SECRET_KEY=@dr11(7h4n=#@8juk63y(-#bqicdl$9f2okpr@#564=a+-f&*8
@@ -168,8 +165,8 @@ EMAIL_BACKEND="django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST=smtp.gmail.com
 EMAIL_USE_TLS=True
 EMAIL_PORT=587
-EMAIL_HOST_USER=
-EMAIL_HOST_PASSWORD=
+EMAIL_HOST_USER=[your gmail address]
+EMAIL_HOST_PASSWORD=[the key you generated earlier]
 ```
 Fill the above field and save.
 
@@ -315,13 +312,6 @@ Heidi Reichert - hreiche@ncsu.edu </br>
 
 ## License:
 Distributed under the MIT License. See `LICENSE` for more information
-
-
-<p align = "center">
-<img width = "450" src = "https://user-images.githubusercontent.com/52373569/194727890-48c53f9d-f351-433e-82bf-df33d7945b25.gif">
- </p>
- 
-<sub>GIF from [Tenor](https://tenor.com/view/jim-parsons-sheldon-cooper-roommate-big-bang-theory-gif-10218446).<sub>
 
 ## Support:
 Questions about the software? Kindly contact us through one of the following routes. We are happy to answer all your questions regarding the software. 
