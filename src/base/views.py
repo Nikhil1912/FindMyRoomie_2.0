@@ -269,7 +269,6 @@ def search(request):
 
                 df = make_frame(df)
 
-
                 df = df.drop("hdpData", 1)
 
                 df = df.drop_duplicates(subset="zpid", keep="last")
@@ -299,7 +298,6 @@ def search(request):
         "pages/scrapper_search.html",
         {"query": query, "results": results},
     )
-
 
 
 def user_logout(request):
