@@ -87,6 +87,9 @@ class Profile(models.Model):
     ROOMS_6 = "6"
     ROOMS_OTHER = "Other"
 
+    SLEEP_LATE = "Night Owl"
+    SLEEP_EARLY = "Early Bird"
+
     BLANK = "--"
     NO_PREF = "No Preference"
 
@@ -125,6 +128,12 @@ class Profile(models.Model):
         (ROOMS_OTHER, "Other"),
     )
 
+    SLEEP_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (SLEEP_LATE, "Night Owl"),
+        (SLEEP_EARLY, "Early Bird"),
+    )
+
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
 
     PREF_GENDER_CHOICES = (
@@ -155,6 +164,12 @@ class Profile(models.Model):
         (COURSE_MEC, "Mechanical Eng."),
     )
 
+    PREF_SLEEP_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (SLEEP_LATE, "Night Owl"),
+        (SLEEP_EARLY, "Early Bird"),
+    )
+
     """User Profile Model"""
     name = models.CharField(max_length=100, default="")
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
@@ -170,9 +185,8 @@ class Profile(models.Model):
     )
     diet = models.CharField(max_length=128, choices=DIET_CHOICES, blank=True)
     country = CountryField(blank_label="Select Country", blank=True)
-    course = models.CharField(
-        max_length=128, choices=COURSE_CHOICES, blank=True
-    )
+    course = models.CharField(max_length=128, choices=COURSE_CHOICES, blank=True)
+    sleep = models.CharField(max_length=128, choices=SLEEP_CHOICES, blank=True)
 
     visibility = models.BooleanField(default=True)
     is_profile_complete = models.BooleanField(default=False)
@@ -208,6 +222,9 @@ class Profile(models.Model):
     )
     preference_course = models.CharField(
         max_length=128, choices=PREF_COURSE_CHOICES, default=NO_PREF
+    )
+    preference_sleep = models.CharField(
+        max_length=128, choices=PREF_SLEEP_CHOICES, default=NO_PREF
     )
 
     email_confirmed = models.BooleanField(default=False)

@@ -85,6 +85,7 @@ class ProfileForm(forms.ModelForm):
             "general_location_details",
             "number_of_rooms",
             "rent_per_person",
+            "sleep",
             "preference_gender",
             "preference_degree",
             "preference_diet",
@@ -101,6 +102,7 @@ class ProfileForm(forms.ModelForm):
             "course",
             "hometown",
             "country",
+            "sleep"
         ]
         widgets = {
             "birth_date": forms.DateInput(
