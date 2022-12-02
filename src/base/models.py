@@ -90,6 +90,17 @@ class Profile(models.Model):
     SLEEP_LATE = "Night Owl"
     SLEEP_EARLY = "Early Bird"
 
+    NEAT_NEAT = "Neat"
+    NEAT_MESSY = "Messy"
+
+    STUDY_QUIET = "Quiet"
+    STUDY_LOUD = "Energetic"
+
+    DRUG_DRINK = "Drink, but don't smoke"
+    DRUG_SMOKE = "Smoke, but don't drink"
+    DRUG_BOTH = "Drink and smoke"
+    DRUG_NEITHER = "Neither"
+
     BLANK = "--"
     NO_PREF = "No Preference"
 
@@ -134,6 +145,26 @@ class Profile(models.Model):
         (SLEEP_EARLY, "Early Bird"),
     )
 
+    NEAT_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (NEAT_NEAT, "Neat"),
+        (NEAT_MESSY, "Messy"),
+    )
+
+    STUDY_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (STUDY_QUIET, "Quiet"),
+        (STUDY_LOUD, "Energetic"),
+    )
+
+    DRUG_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (DRUG_DRINK, "Drink, but don't smoke"),
+        (DRUG_SMOKE, "Smoke, but don't drink"),
+        (DRUG_BOTH, "Drink and smoke"),
+        (DRUG_NEITHER, "Neither"),
+    )
+
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
 
     PREF_GENDER_CHOICES = (
@@ -169,6 +200,24 @@ class Profile(models.Model):
         (SLEEP_LATE, "Night Owl"),
         (SLEEP_EARLY, "Early Bird"),
     )
+    PREF_NEAT_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (NEAT_NEAT, "Neat"),
+        (NEAT_MESSY, "Messy"),
+    )
+    PREF_STUDY_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (STUDY_QUIET, "Quiet"),
+        (STUDY_LOUD, "Energetic"),
+    )
+    PREF_DRUG_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (DRUG_DRINK, "Drink, but don't smoke"),
+        (DRUG_SMOKE, "Smoke, but don't drink"),
+        (DRUG_BOTH, "Drink and smoke"),
+        (DRUG_NEITHER, "Neither"),
+    )
+
 
     """User Profile Model"""
     name = models.CharField(max_length=100, default="")
@@ -187,6 +236,9 @@ class Profile(models.Model):
     country = CountryField(blank_label="Select Country", blank=True)
     course = models.CharField(max_length=128, choices=COURSE_CHOICES, blank=True)
     sleep = models.CharField(max_length=128, choices=SLEEP_CHOICES, blank=True)
+    neat = models.CharField(max_length=128, choices=NEAT_CHOICES, blank=True)
+    drug = models.CharField(max_length=128, choices=DRUG_CHOICES, blank=True)
+    study = models.CharField(max_length=128, choices=STUDY_CHOICES, blank=True)
 
     visibility = models.BooleanField(default=True)
     is_profile_complete = models.BooleanField(default=False)
@@ -225,6 +277,15 @@ class Profile(models.Model):
     )
     preference_sleep = models.CharField(
         max_length=128, choices=PREF_SLEEP_CHOICES, default=NO_PREF
+    )
+    preference_study = models.CharField(
+        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+    )
+    preference_neat = models.CharField(
+        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+    )
+    preference_drug = models.CharField(
+        max_length=128, choices=PREF_DRUG_CHOICES, default=NO_PREF
     )
 
     email_confirmed = models.BooleanField(default=False)
