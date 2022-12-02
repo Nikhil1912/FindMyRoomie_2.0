@@ -145,7 +145,6 @@ class Profile(models.Model):
         (ROOMS_OTHER, "Other"),
     )
 
-
     NUM_ROOMMATES_CHOICES = (
         (ROOMMATES_2, "2"),
         (ROOMMATES_3, "3"),
@@ -153,6 +152,7 @@ class Profile(models.Model):
         (ROOMMATES_5, "5"),
         (ROOMMATES_6, "6"),
         (ROOMMATES_OTHER, "Other"),
+    )
 
     SLEEP_CHOICES = (
         (NO_PREF, "No Preference"),
@@ -178,7 +178,6 @@ class Profile(models.Model):
         (DRUG_SMOKE, "Smoke, but don't drink"),
         (DRUG_BOTH, "Drink and smoke"),
         (DRUG_NEITHER, "Neither"),
-
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -249,7 +248,9 @@ class Profile(models.Model):
     )
     diet = models.CharField(max_length=128, choices=DIET_CHOICES, blank=True)
     country = CountryField(blank_label="Select Country", blank=True)
-    course = models.CharField(max_length=128, choices=COURSE_CHOICES, blank=True)
+    course = models.CharField(
+        max_length=128, choices=COURSE_CHOICES, blank=True
+    )
     sleep = models.CharField(max_length=128, choices=SLEEP_CHOICES, blank=True)
     neat = models.CharField(max_length=128, choices=NEAT_CHOICES, blank=True)
     drug = models.CharField(max_length=128, choices=DRUG_CHOICES, blank=True)
