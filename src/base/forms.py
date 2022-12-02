@@ -85,11 +85,22 @@ class ProfileForm(forms.ModelForm):
             "general_location_details",
             "number_of_rooms",
             "rent_per_person",
+            "sleep",
+            "neat",
+            "study",
+            "drug",
             "preference_gender",
             "preference_degree",
             "preference_diet",
+            "preference_study",  # preferred study conditions
+            "preference_neat",  # neat or messy
+            "preference_drug",  # drinks/smokes/neither
             "preference_country",
             "preference_course",
+            "preference_sleep",  # preferred sleep patterns (late night vs. early morning)
+            "preference_neat",
+            "preference_study",
+            "preference_drug",
         )
         required_fields = [
             "name",
@@ -101,6 +112,10 @@ class ProfileForm(forms.ModelForm):
             "course",
             "hometown",
             "country",
+            "sleep",
+            "study",
+            "neat",
+            "drug",
         ]
         widgets = {
             "birth_date": forms.DateInput(

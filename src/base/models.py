@@ -27,7 +27,6 @@ from django.contrib.auth import get_user_model
 
 from django_countries.fields import CountryField
 
-
 from django.contrib.auth.models import AbstractUser
 
 from .managers import CustomUserManager
@@ -94,6 +93,20 @@ class Profile(models.Model):
     ROOMMATES_6 = "6"
     ROOMMATES_OTHER = "Other"
 
+    SLEEP_LATE = "Night Owl"
+    SLEEP_EARLY = "Early Bird"
+
+    NEAT_NEAT = "Neat"
+    NEAT_MESSY = "Messy"
+
+    STUDY_QUIET = "Quiet"
+    STUDY_LOUD = "Energetic"
+
+    DRUG_DRINK = "Drink, but don't smoke"
+    DRUG_SMOKE = "Smoke, but don't drink"
+    DRUG_BOTH = "Drink and smoke"
+    DRUG_NEITHER = "Neither"
+
     BLANK = "--"
     NO_PREF = "No Preference"
 
@@ -132,6 +145,7 @@ class Profile(models.Model):
         (ROOMS_OTHER, "Other"),
     )
 
+
     NUM_ROOMMATES_CHOICES = (
         (ROOMMATES_2, "2"),
         (ROOMMATES_3, "3"),
@@ -139,6 +153,32 @@ class Profile(models.Model):
         (ROOMMATES_5, "5"),
         (ROOMMATES_6, "6"),
         (ROOMMATES_OTHER, "Other"),
+
+    SLEEP_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (SLEEP_LATE, "Night Owl"),
+        (SLEEP_EARLY, "Early Bird"),
+    )
+
+    NEAT_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (NEAT_NEAT, "Neat"),
+        (NEAT_MESSY, "Messy"),
+    )
+
+    STUDY_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (STUDY_QUIET, "Quiet"),
+        (STUDY_LOUD, "Energetic"),
+    )
+
+    DRUG_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (DRUG_DRINK, "Drink, but don't smoke"),
+        (DRUG_SMOKE, "Smoke, but don't drink"),
+        (DRUG_BOTH, "Drink and smoke"),
+        (DRUG_NEITHER, "Neither"),
+
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -171,6 +211,29 @@ class Profile(models.Model):
         (COURSE_MEC, "Mechanical Eng."),
     )
 
+    PREF_SLEEP_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (SLEEP_LATE, "Night Owl"),
+        (SLEEP_EARLY, "Early Bird"),
+    )
+    PREF_NEAT_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (NEAT_NEAT, "Neat"),
+        (NEAT_MESSY, "Messy"),
+    )
+    PREF_STUDY_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (STUDY_QUIET, "Quiet"),
+        (STUDY_LOUD, "Energetic"),
+    )
+    PREF_DRUG_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (DRUG_DRINK, "Drink, but don't smoke"),
+        (DRUG_SMOKE, "Smoke, but don't drink"),
+        (DRUG_BOTH, "Drink and smoke"),
+        (DRUG_NEITHER, "Neither"),
+    )
+
     """User Profile Model"""
     name = models.CharField(max_length=100, default="")
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
@@ -186,9 +249,11 @@ class Profile(models.Model):
     )
     diet = models.CharField(max_length=128, choices=DIET_CHOICES, blank=True)
     country = CountryField(blank_label="Select Country", blank=True)
-    course = models.CharField(
-        max_length=128, choices=COURSE_CHOICES, blank=True
-    )
+    course = models.CharField(max_length=128, choices=COURSE_CHOICES, blank=True)
+    sleep = models.CharField(max_length=128, choices=SLEEP_CHOICES, blank=True)
+    neat = models.CharField(max_length=128, choices=NEAT_CHOICES, blank=True)
+    drug = models.CharField(max_length=128, choices=DRUG_CHOICES, blank=True)
+    study = models.CharField(max_length=128, choices=STUDY_CHOICES, blank=True)
 
     visibility = models.BooleanField(default=True)
     is_profile_complete = models.BooleanField(default=False)
@@ -239,6 +304,18 @@ class Profile(models.Model):
     )
     preference_course = models.CharField(
         max_length=128, choices=PREF_COURSE_CHOICES, default=NO_PREF
+    )
+    preference_sleep = models.CharField(
+        max_length=128, choices=PREF_SLEEP_CHOICES, default=NO_PREF
+    )
+    preference_study = models.CharField(
+        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+    )
+    preference_neat = models.CharField(
+        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+    )
+    preference_drug = models.CharField(
+        max_length=128, choices=PREF_DRUG_CHOICES, default=NO_PREF
     )
 
     email_confirmed = models.BooleanField(default=False)

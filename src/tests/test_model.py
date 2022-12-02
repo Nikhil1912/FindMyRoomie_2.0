@@ -37,6 +37,7 @@ class TestModels(TestCase):
         profile.degree = "Masters Program (MS)"
         profile.diet = "Non Veg"
         profile.country = "India"
+        profile.sleep = "Night Owl"
         profile.visibility = "True"
         profile.have_property = "True"
         profile.city = "Cary"
@@ -48,6 +49,10 @@ class TestModels(TestCase):
         profile.preference_degree = "Masters Program (MS)"
         profile.preference_course = "Computer Science"
         profile.preference_diet = "Non Veg"
+        profile.preference_sleep = "Night Owl"
+        profile.preference_neat = "Neat"
+        profile.preference_drug = "Neither"
+        profile.preference_study = "Energetic"
         profile.is_profile_complete = "True"
         profile.save()
         self.assertEqual(user.email, "admin@ncsu.edu")
@@ -59,6 +64,7 @@ class TestModels(TestCase):
         self.assertEqual(profile.degree, "Masters Program (MS)")
         self.assertEqual(profile.diet, "Non Veg")
         self.assertEqual(profile.country, "India")
+        self.assertEqual(profile.sleep, "Night Owl")
         self.assertEqual(profile.visibility, "True")
         self.assertEqual(profile.have_property, "True")
         self.assertEqual(profile.city, "Cary")
@@ -70,4 +76,8 @@ class TestModels(TestCase):
         self.assertEqual(profile.preference_degree, "Masters Program (MS)")
         self.assertEqual(profile.preference_course, "Computer Science")
         self.assertEqual(profile.preference_diet, "Non Veg")
+        self.assertEqual(profile.preference_sleep, "Night Owl")
+        self.assertEqual(profile.preference_neat, "Neat")
+        self.assertEqual(profile.preference_drug, "Neither")
+        self.assertEqual(profile.preference_study, "Energetic")
         self.assertEqual(profile.is_profile_complete, "True")
