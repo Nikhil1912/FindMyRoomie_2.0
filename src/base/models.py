@@ -86,6 +86,13 @@ class Profile(models.Model):
     ROOMS_6 = "6"
     ROOMS_OTHER = "Other"
 
+    ROOMMATES_2 = "2"
+    ROOMMATES_3 = "3"
+    ROOMMATES_4 = "4"
+    ROOMMATES_5 = "5"
+    ROOMMATES_6 = "6"
+    ROOMMATES_OTHER = "Other"
+
     SLEEP_LATE = "Night Owl"
     SLEEP_EARLY = "Early Bird"
 
@@ -136,6 +143,15 @@ class Profile(models.Model):
         (ROOMS_5, "5"),
         (ROOMS_6, "6"),
         (ROOMS_OTHER, "Other"),
+    )
+
+    NUM_ROOMMATES_CHOICES = (
+        (ROOMMATES_2, "2"),
+        (ROOMMATES_3, "3"),
+        (ROOMMATES_4, "4"),
+        (ROOMMATES_5, "5"),
+        (ROOMMATES_6, "6"),
+        (ROOMMATES_OTHER, "Other"),
     )
 
     SLEEP_CHOICES = (
@@ -232,7 +248,9 @@ class Profile(models.Model):
     )
     diet = models.CharField(max_length=128, choices=DIET_CHOICES, blank=True)
     country = CountryField(blank_label="Select Country", blank=True)
-    course = models.CharField(max_length=128, choices=COURSE_CHOICES, blank=True)
+    course = models.CharField(
+        max_length=128, choices=COURSE_CHOICES, blank=True
+    )
     sleep = models.CharField(max_length=128, choices=SLEEP_CHOICES, blank=True)
     neat = models.CharField(max_length=128, choices=NEAT_CHOICES, blank=True)
     drug = models.CharField(max_length=128, choices=DRUG_CHOICES, blank=True)
@@ -247,14 +265,29 @@ class Profile(models.Model):
     # property details
 
     have_property = models.BooleanField(default=False)
-    city = models.CharField(
-        max_length=128, choices=CITY_CHOICES, blank=True
-    )
+    city = models.CharField(max_length=128, choices=CITY_CHOICES, blank=True)
     general_location_details = models.TextField(max_length=500, blank=True)
     number_of_rooms = models.CharField(
         max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
     )
+
+    number_of_roommates = models.CharField(
+        max_length=100, choices=NUM_ROOMMATES_CHOICES, blank=True
+    )
+
+    roommate_details = models.TextField(max_length=500, blank=True)
+
+    apartment_photo = models.ImageField(
+        default="default.png", upload_to="profile_pics"
+    )
+
+    furnished = models.BooleanField(default=True)
+
     rent_per_person = models.PositiveIntegerField(default=0, blank=True)
+
+    lease_start_date = models.DateField(null=True, blank=True)
+
+    lease_end_date = models.DateField(null=True, blank=True)
 
     # preferences
 

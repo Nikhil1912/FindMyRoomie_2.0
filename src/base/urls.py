@@ -37,8 +37,9 @@ urlpatterns = [
     path("myroom/", views.myroom, name="myroom"),
     path("messageboard/", views.messageboard, name="messageboard"),
     path("logout/", views.user_logout, name="user_logout"),
-    path('searchpage/', views.scrapper_search_page, name='scrapper_page'),
-    path('search/', views.search, name='search'),
+    path("searchpage/", views.scrapper_search_page, name="scrapper_page"),
+    path("search/", views.search, name="search"),
+    path("subleasing/", views.subleasing, name="subleasing"),
     path(
         "about",
         TemplateView.as_view(template_name="pages/about.html"),
