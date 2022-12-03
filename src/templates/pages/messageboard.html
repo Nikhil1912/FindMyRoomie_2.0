@@ -30,7 +30,7 @@ Much of the HTML/JS design from https://codepen.io/Viruz/pen/QadJxO
 
 
 {% load crispy_forms_tags %}
-
+<link rel="stylesheet" href="{% static 'styles/style.css' %}">
 
 
 {% block title %}
@@ -41,35 +41,88 @@ Message Board
 
 
 <div style="display: flex; justify-content: center; margin: 32px 16px; height: 95vh; overflow-y: scroll;">
-    <div id="section-right" style="width: 20%;">
-      <div style="width: 100%;">
-        <form method="get">
-            {{ filter.form|crispy }}
-            <input class="btn btn-danger w-100" type="submit" value="Filter" />
-        </form>
-      </div>
+  <div id="left-section" style="width: 20%;">
+    <div style="width: 100%;">
+      <form method="get">
+          {{ filter.form|crispy }}
+          <input class="btn btn-danger w-100" type="submit" value="Filter" />
+      </form>
     </div>
+  </div>
 
-    <div id="section-left" style="width: 80%">
-        <div class="container">
-            <div class="card">
-                <div class="card-body">                  
-                  <div><h1 class="card-title">Posts:</h1></div>
-                    <ul class="list-group list-group-flush">
-                    {% for post in filter.qs %}
-                    <li class="list-group-item">
-                      <p class="post">
-                        <div class="title"><b>{{ post.title }}</b></div>
-                        <div class="user" style="font-size: 12px; font-style: italic;">by {{ post.user.first_name }} {{ post.user.last_name }}</div>
-                        <div class="body">{{ post.description }}</div>
-                      </p>
-                    </li>                      
-                    {% endfor %}
-                    </ul>
+  <div id="right-section" style="width: 80%">
+    <div class="cards-container">
+      <h1 class="card-title">Posts:</h1>
+      <div class="card-body">
+        <ul class="list-group list-group-flush">
+        {% for post in filter.qs %}
+          <li class="list-group-item">
+            <div class="card shadow-sm bg-body rounded card-style" data-bs-toggle="modal" data-bs-target="#post-modal-{{post.id}}">
+              <div class="row" style="padding: 8px 16px">
+                <div class="col" ><b>{{ post.title }}</b></div>
+                <div class="col" style="font-size: 12px; font-style: italic; text-align: right;">by {{ post.user.first_name }} {{ post.user.last_name }}</div>                          
+              </div>
+              <div class="row" style="padding: 8px 16px">
+                <div class="col">{{ post.description }}</div>                          
+              </div>
+            </div>                  
+          </li>
+        
+          <!-- Modal -->
+          <div class="modal fade" id="post-modal-{{ post.id }}" tabindex="-1" aria-labelledby="post-modal-{{post.id}}" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header" style="display: flex; align-items: center;">
+                  <h5 class="modal-title">{{ post.title }}</h5>
+                  <button type="button" class="btn-close" style="align-self: flex-start;"
+                    data-bs-dismiss="modal" aria-label="Close">
+                  </button>
                 </div>
+                <div class="modal-body">
+                  <div>
+                    By {{ post.user.first_name }} {{ post.user.last_name }}<br>
+                  </div>
+                  <div>
+                    {{ post.description }}<br>
+                  </div>
+                </div>                            
+              </div>                                    
             </div>
-        </div>
+          </div>
+        {% endfor %}
+        </ul>
+      </div>             
     </div>
+  </div>
 </div>
+
+<style>  
+  #right-section {
+      width: 80%;
+      margin-left: 16px;
+      overflow-y: scroll;
+
+  }
+
+  .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      flex-grow: 1;
+      padding: 0;
+      justify-content: left;
+  }
+
+  .card-style {
+      margin: 8px;
+      border: 1px solid #cc0000;
+  }
+
+  .card:hover {
+      transform: rotate(0.002turn);
+      cursor: pointer;
+      background-color: #cc0000;
+      color: white;
+  }
+</style>
 
 {% endblock%}
