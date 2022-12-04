@@ -80,74 +80,80 @@ Message Board
               </div>
             </div>                      
           </li>
-          {% for post in filter.qs %}
-          <li class="list-group-item">
-            <div class="card shadow-sm bg-body rounded card-style" data-bs-toggle="modal" data-bs-target="#post-modal-{{post.id}}">
-              <div class="row" style="padding: 8px 16px">
-                <div class="col" ><b>{{ post.title }}</b></div>
-                <div class="col" style="font-size: 12px; font-style: italic; text-align: right;">by {{ post.user.profile.name }}</div>                          
-              </div>
-              <div class="row" style="padding: 8px 16px">
-                <div class="col">{{ post.description }}</div>                          
-              </div>              
-            </div>                  
-          </li>
-        
-          <!-- Modal -->
-          <div class="modal fade" id="post-modal-{{ post.id }}" tabindex="-1" aria-labelledby="post-modal-{{post.id}}" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header" style="display: flex; align-items: center;">
-                  <h5 class="modal-title">{{ post.title }}</h5>
-                  <button type="button" class="btn-close" style="align-self: flex-start;"
-                    data-bs-dismiss="modal" aria-label="Close">
-                  </button>
+          {% if filter.qs %}
+            {% for post in filter.qs %}
+            <li class="list-group-item">
+              <div class="card shadow-sm bg-body rounded card-style" data-bs-toggle="modal" data-bs-target="#post-modal-{{post.id}}">
+                <div class="row" style="padding: 8px 16px">
+                  <div class="col" ><b>{{ post.title }}</b></div>
+                  <div class="col" style="font-size: 12px; font-style: italic; text-align: right;">by {{ post.user.profile.name }}</div>                          
                 </div>
-                <div class="modal-body">
-                  <div>
-                    <b>{{ post.user.profile.name }}</b><br>
-                    <i style="font-size: 14px;">{{ post.user.email }}</i><br><br>
+                <div class="row" style="padding: 8px 16px">
+                  <div class="col">{{ post.description }}</div>                          
+                </div>              
+              </div>                  
+            </li>
+          
+            <!-- Modal -->
+            <div class="modal fade" id="post-modal-{{ post.id }}" tabindex="-1" aria-labelledby="post-modal-{{post.id}}" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header" style="display: flex; align-items: center;">
+                    <h5 class="modal-title">{{ post.title }}</h5>
+                    <button type="button" class="btn-close" style="align-self: flex-start;"
+                      data-bs-dismiss="modal" aria-label="Close">
+                    </button>
                   </div>
-                  <div>
-                    {{ post.description }}<br><br>
-                  </div>
-                  {% if post.comment_set.all %}
-                  <div>
-                    <u>Comments:</u>
-                  </div>
-                  <div class="row" style="padding: 8px 16px">
-                    <div class="col">
-                      <ul class="list-group list-group-flush">
-                      {% for comment in post.comment_set.all %}
-                        <li class="list-group-item">
-                          <div>
-                            <b>{{ comment.user.profile.name }}</b><br>
-                            <i style="font-size: 14px;">{{ comment.user.email }}</i><br>
-                            {{ comment.body }}
-                          </div>
-                        </li>
-                      {% endfor %}
-                      </ul>                      
-                    </div>                          
-                  </div>
-                  {% else %}
+                  <div class="modal-body">
                     <div>
-                      <b>No comments</b>
+                      <b>{{ post.user.profile.name }}</b><br>
+                      <i style="font-size: 14px;">{{ post.user.email }}</i><br><br>
                     </div>
-                  {% endif %}
-                  <br>
-                  <form method="post" enctype='multipart/form-data'>
-                    {% csrf_token %}
-                    {{ form|crispy }}
+                    <div>
+                      {{ post.description }}<br><br>
+                    </div>
+                    {% if post.comment_set.all %}
+                    <div>
+                      <u>Comments:</u>
+                    </div>
+                    <div class="row" style="padding: 8px 16px">
+                      <div class="col">
+                        <ul class="list-group list-group-flush">
+                        {% for comment in post.comment_set.all %}
+                          <li class="list-group-item">
+                            <div>
+                              <b>{{ comment.user.profile.name }}</b><br>
+                              <i style="font-size: 14px;">{{ comment.user.email }}</i><br>
+                              {{ comment.body }}
+                            </div>
+                          </li>
+                        {% endfor %}
+                        </ul>                      
+                      </div>                          
+                    </div>
+                    {% else %}
+                      <div>
+                        <b>No comments</b>
+                      </div>
+                    {% endif %}
                     <br>
-                    <input type="hidden" name="forum_post_id" id="forum_post_id" value="{{ post.id }}"/>                       
-                    <button name="submit_comment" class="btn btn-danger" type="submit" id="submit_button_comment">Submit</button>
-                  </form>
-                </div>                            
-              </div>                                    
+                    <form method="post" enctype='multipart/form-data'>
+                      {% csrf_token %}
+                      {{ form|crispy }}
+                      <br>
+                      <input type="hidden" name="forum_post_id" id="forum_post_id" value="{{ post.id }}"/>                       
+                      <button name="submit_comment" class="btn btn-danger" type="submit" id="submit_button_comment">Submit</button>
+                    </form>
+                  </div>                            
+                </div>                                    
+              </div>
             </div>
-          </div>
-          {% endfor %}
+            {% endfor %}
+          {% else %}
+            <li class="list-group-item">
+              <h3>No posts to show</h3>
+            </li>
+          {% endif %}
         </ul>
       </div>             
     </div>
