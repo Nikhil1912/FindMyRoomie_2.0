@@ -22,10 +22,12 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
+from django.utils.translation import gettext_lazy as _
+from django.forms.widgets import HiddenInput
 from .utils import check_ncsu_email
 
 # from django.contrib.admin.widgets import AdminDateWidget
-from .models import Profile
+from .models import Profile, Comment, ForumPost
 
 
 class SignUpForm(UserCreationForm):
@@ -189,4 +191,38 @@ class SubleasingForm(forms.ModelForm):
                     "type": "date",
                 },
             ),
+        }
+
+
+class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = Comment
+        fields = (
+            "body",
+        )
+        labels = {
+            "body": _("Add Comment"),
+        }
+
+
+class PostForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+
+    class Meta:
+        model = ForumPost
+        fields = (
+            "title",
+            "description",
+        )
+        labels = {
+            "description": _("Write a post"),
+        }
+        widgets = {
+            "title": forms.Textarea(attrs={'rows': 1, 'cols': 15}),
         }

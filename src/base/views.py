@@ -26,8 +26,8 @@ from django.views import generic
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm, SignUpForm, SubleasingForm
-from .models import Profile
+from .forms import ProfileForm, SignUpForm, SubleasingForm, CommentForm, PostForm
+from .models import Profile, ForumPost
 from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
 
@@ -36,7 +36,7 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode
 from django.template.loader import render_to_string
-from .filters import ProfileFilter
+from .filters import ProfileFilter, PostFilter
 from .matching import matchings
 
 from django.contrib.auth import login
@@ -174,7 +174,39 @@ def findpeople(request):
 @login_required()
 def messageboard(request):
     """Render message board page"""
-    return render(request, "pages/messageboard.html")
+    forum_posts = ForumPost.objects.prefetch_related('comment_set').all()
+    post_filter = PostFilter(request.GET, queryset=forum_posts)
+
+    if request.method == "POST":
+        if 'submit_comment' in request.POST:
+            form = CommentForm(request.POST, request.FILES, user=request.user)
+            form.instance.user = request.user
+            form.instance.forum_post = ForumPost.objects.filter(id=request.POST["forum_post_id"]).first()
+            if form.is_valid():
+                form.save()
+                messages.success(
+                    request,
+                    ("Comment posted."),
+                )
+                return redirect("messageboard")
+            else:
+                print(form.errors)
+        elif 'submit_post' in request.POST:
+            form = PostForm(request.POST, request.FILES, user=request.user)
+            form.instance.user = request.user
+            if form.is_valid():
+                form.save()
+                messages.success(
+                    request,
+                    ("Post created successfully."),
+                )
+                return redirect("messageboard")
+            else:
+                print(form.errors)
+
+    post_form = PostForm(user=request.user)
+    form = CommentForm(user=request.user)
+    return render(request, "pages/messageboard.html", {"filter": post_filter, "form" : form, "post_form": post_form})
 
 
 @login_required()

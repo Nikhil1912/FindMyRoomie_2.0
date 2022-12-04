@@ -20,7 +20,7 @@
 #
 
 import django_filters
-from base.models import Profile
+from base.models import Profile, ForumPost
 
 
 class ProfileFilter(django_filters.FilterSet):
@@ -35,3 +35,10 @@ class ProfileFilter(django_filters.FilterSet):
         #     profiles = super().qs
 
         #     return profiles.filter(visibility=True)
+
+
+class PostFilter(django_filters.FilterSet):
+    """Filter to filter the queryset for forum post"""
+    class Meta:
+        model = ForumPost
+        fields = ['user']
