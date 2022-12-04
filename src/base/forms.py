@@ -193,6 +193,7 @@ class SubleasingForm(forms.ModelForm):
             ),
         }
 
+
 class CommentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop('user', None)
@@ -206,6 +207,7 @@ class CommentForm(forms.ModelForm):
         labels = {
             "body": _("Add Comment"),
         }
+
 
 class PostForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
@@ -222,5 +224,5 @@ class PostForm(forms.ModelForm):
             "description": _("Write a post"),
         }
         widgets = {
-            "title": forms.Textarea(attrs={'rows':1, 'cols':15}),
+            "title": forms.Textarea(attrs={'rows': 1, 'cols': 15}),
         }

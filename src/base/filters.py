@@ -36,8 +36,10 @@ class ProfileFilter(django_filters.FilterSet):
 
         #     return profiles.filter(visibility=True)
 
+
 class PostFilter(django_filters.FilterSet):
     """Filter to filter the queryset for forum post"""
     class Meta:
         model = ForumPost
         fields = ['user']
+        
