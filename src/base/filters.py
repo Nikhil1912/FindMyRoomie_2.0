@@ -42,4 +42,3 @@ class PostFilter(django_filters.FilterSet):
     class Meta:
         model = ForumPost
         fields = ['user']
-        
