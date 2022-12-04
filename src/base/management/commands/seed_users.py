@@ -92,6 +92,10 @@ class Command(BaseCommand):
                 p.degree = random.choices(Profile.DEGREE_CHOICES)[0][0]
                 p.diet = random.choices(Profile.DIET_CHOICES)[0][0]
                 p.course = random.choices(Profile.COURSE_CHOICES)[0][0]
+                p.sleep = random.choices(Profile.SLEEP_CHOICES)[0][0]
+                p.neat = random.choices(Profile.NEAT_CHOICES)[0][0]
+                p.drug = random.choices(Profile.DRUG_CHOICES)[0][0]
+                p.study = random.choices(Profile.STUDY_CHOICES)[0][0]
 
                 p.preference_gender = random.choices(
                     Profile.PREF_GENDER_CHOICES
@@ -104,6 +108,18 @@ class Command(BaseCommand):
                 ][0]
                 p.preference_course = random.choices(
                     Profile.PREF_COURSE_CHOICES
+                )[0][0]
+                p.preference_sleep = random.choices(
+                    Profile.PREF_SLEEP_CHOICES
+                )[0][0]
+                p.preference_study = random.choices(
+                    Profile.PREF_STUDY_CHOICES
+                )[0][0]
+                p.preference_drug = random.choices(
+                    Profile.PREF_DRUG_CHOICES
+                )[0][0]
+                p.preference_neat = random.choices(
+                    Profile.PREF_NEAT_CHOICES
                 )[0][0]
                 p.is_profile_complete = True
                 p.save()

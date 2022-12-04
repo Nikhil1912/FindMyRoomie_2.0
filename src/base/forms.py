@@ -82,11 +82,27 @@ class ProfileForm(forms.ModelForm):
             "hometown",
             "country",
             "visibility",
+            "have_property",
+            "city",
+            "general_location_details",
+            "number_of_rooms",
+            "rent_per_person",
+            "sleep",
+            "neat",
+            "study",
+            "drug",
             "preference_gender",
             "preference_degree",
             "preference_diet",
+            "preference_study",  # preferred study conditions
+            "preference_neat",  # neat or messy
+            "preference_drug",  # drinks/smokes/neither
             "preference_country",
             "preference_course",
+            "preference_sleep",  # preferred sleep patterns (late night vs. early morning)
+            "preference_neat",
+            "preference_study",
+            "preference_drug",
         )
         required_fields = [
             "name",
@@ -98,6 +114,10 @@ class ProfileForm(forms.ModelForm):
             "course",
             "hometown",
             "country",
+            "sleep",
+            "study",
+            "neat",
+            "drug",
         ]
         widgets = {
             "birth_date": forms.DateInput(
@@ -108,6 +128,69 @@ class ProfileForm(forms.ModelForm):
                     "type": "date",
                 },
             )
+        }
+
+
+class SubleasingForm(forms.ModelForm):
+    """Subleasing Form"""
+
+    # lease_start_date = forms.DateField(widget=AdminDateWidget)
+
+    def __init__(self, *args, **kwargs):
+        super(SubleasingForm, self).__init__(*args, **kwargs)
+        for bound_field in self:
+            if (
+                hasattr(bound_field, "field")
+                and bound_field.name in self.Meta.required_fields
+            ):
+                bound_field.field.widget.attrs["required"] = "required"
+
+    class Meta:
+        model = Profile
+        fields = (
+            "name",
+            "general_location_details",
+            "apartment_photo",
+            "lease_start_date",
+            "lease_end_date",
+            "number_of_roommates",
+            "roommate_details",
+            "furnished",
+            "gender",
+            "diet",
+            "hometown",
+            "country",
+            "city",
+            "number_of_rooms",
+            "rent_per_person",
+        )
+        required_fields = [
+            "name",
+            "bio",
+            "lease_start_date",
+            "lease_end_date",
+            "gender",
+            "diet",
+            "hometown",
+            "country",
+        ]
+        widgets = {
+            "lease_start_date": forms.DateInput(
+                format=("%Y-%m-%d"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Select Date",
+                    "type": "date",
+                },
+            ),
+            "lease_end_date": forms.DateInput(
+                format=("%Y-%m-%d"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Select Date",
+                    "type": "date",
+                },
+            ),
         }
 
 class CommentForm(forms.ModelForm):

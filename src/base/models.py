@@ -27,7 +27,6 @@ from django.contrib.auth import get_user_model
 
 from django_countries.fields import CountryField
 
-
 from django.contrib.auth.models import AbstractUser
 
 from .managers import CustomUserManager
@@ -65,7 +64,7 @@ class Profile(models.Model):
 
     DEGREE_BS = "Bachelors"
     DEGREE_MS = "Masters"
-    DEGREE_PHD = "Phd"
+    DEGREE_PHD = "PhD"
 
     DIET_VEG = "Vegetarian"
     DIET_NON_VEG = "Non Vegetarian"
@@ -74,6 +73,39 @@ class Profile(models.Model):
     COURSE_CE = "Computer Engineering"
     COURSE_EE = "Electrical Engineering"
     COURSE_MEC = "Mechanical Engineering"
+
+    CITY_RALEIGH = "Raleigh"
+    CITY_DURHAM = "Durham"
+    CITY_CARY = "Cary"
+    CITY_OTHER = "Other"
+
+    ROOMS_2 = "2"
+    ROOMS_3 = "3"
+    ROOMS_4 = "4"
+    ROOMS_5 = "5"
+    ROOMS_6 = "6"
+    ROOMS_OTHER = "Other"
+
+    ROOMMATES_2 = "2"
+    ROOMMATES_3 = "3"
+    ROOMMATES_4 = "4"
+    ROOMMATES_5 = "5"
+    ROOMMATES_6 = "6"
+    ROOMMATES_OTHER = "Other"
+
+    SLEEP_LATE = "Night Owl"
+    SLEEP_EARLY = "Early Bird"
+
+    NEAT_NEAT = "Neat"
+    NEAT_MESSY = "Messy"
+
+    STUDY_QUIET = "Quiet"
+    STUDY_LOUD = "Energetic"
+
+    DRUG_DRINK = "Drink, but don't smoke"
+    DRUG_SMOKE = "Smoke, but don't drink"
+    DRUG_BOTH = "Drink and smoke"
+    DRUG_NEITHER = "Neither"
 
     BLANK = "--"
     NO_PREF = "No Preference"
@@ -95,6 +127,57 @@ class Profile(models.Model):
         (COURSE_CE, "Computer Eng."),
         (COURSE_EE, "Electrical Eng."),
         (COURSE_MEC, "Mechanical Eng."),
+    )
+
+    CITY_CHOICES = (
+        (CITY_RALEIGH, "Raleigh"),
+        (CITY_DURHAM, "Durham"),
+        (CITY_CARY, "Cary"),
+        (CITY_OTHER, "Other"),
+    )
+
+    NUM_ROOMS_CHOICES = (
+        (ROOMS_2, "2"),
+        (ROOMS_3, "3"),
+        (ROOMS_4, "4"),
+        (ROOMS_5, "5"),
+        (ROOMS_6, "6"),
+        (ROOMS_OTHER, "Other"),
+    )
+
+    NUM_ROOMMATES_CHOICES = (
+        (ROOMMATES_2, "2"),
+        (ROOMMATES_3, "3"),
+        (ROOMMATES_4, "4"),
+        (ROOMMATES_5, "5"),
+        (ROOMMATES_6, "6"),
+        (ROOMMATES_OTHER, "Other"),
+    )
+
+    SLEEP_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (SLEEP_LATE, "Night Owl"),
+        (SLEEP_EARLY, "Early Bird"),
+    )
+
+    NEAT_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (NEAT_NEAT, "Neat"),
+        (NEAT_MESSY, "Messy"),
+    )
+
+    STUDY_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (STUDY_QUIET, "Quiet"),
+        (STUDY_LOUD, "Energetic"),
+    )
+
+    DRUG_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (DRUG_DRINK, "Drink, but don't smoke"),
+        (DRUG_SMOKE, "Smoke, but don't drink"),
+        (DRUG_BOTH, "Drink and smoke"),
+        (DRUG_NEITHER, "Neither"),
     )
 
     DIET_CHOICES = ((DIET_VEG, "Veg"), (DIET_NON_VEG, "Non Veg"))
@@ -127,6 +210,29 @@ class Profile(models.Model):
         (COURSE_MEC, "Mechanical Eng."),
     )
 
+    PREF_SLEEP_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (SLEEP_LATE, "Night Owl"),
+        (SLEEP_EARLY, "Early Bird"),
+    )
+    PREF_NEAT_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (NEAT_NEAT, "Neat"),
+        (NEAT_MESSY, "Messy"),
+    )
+    PREF_STUDY_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (STUDY_QUIET, "Quiet"),
+        (STUDY_LOUD, "Energetic"),
+    )
+    PREF_DRUG_CHOICES = (
+        (NO_PREF, "No Preference"),
+        (DRUG_DRINK, "Drink, but don't smoke"),
+        (DRUG_SMOKE, "Smoke, but don't drink"),
+        (DRUG_BOTH, "Drink and smoke"),
+        (DRUG_NEITHER, "Neither"),
+    )
+
     """User Profile Model"""
     name = models.CharField(max_length=100, default="")
     user = models.OneToOneField(get_user_model(), on_delete=models.CASCADE)
@@ -145,12 +251,43 @@ class Profile(models.Model):
     course = models.CharField(
         max_length=128, choices=COURSE_CHOICES, blank=True
     )
+    sleep = models.CharField(max_length=128, choices=SLEEP_CHOICES, blank=True)
+    neat = models.CharField(max_length=128, choices=NEAT_CHOICES, blank=True)
+    drug = models.CharField(max_length=128, choices=DRUG_CHOICES, blank=True)
+    study = models.CharField(max_length=128, choices=STUDY_CHOICES, blank=True)
 
     visibility = models.BooleanField(default=True)
     is_profile_complete = models.BooleanField(default=False)
     profile_photo = models.ImageField(
         default="default.png", upload_to="profile_pics"
     )
+
+    # property details
+
+    have_property = models.BooleanField(default=False)
+    city = models.CharField(max_length=128, choices=CITY_CHOICES, blank=True)
+    general_location_details = models.TextField(max_length=500, blank=True)
+    number_of_rooms = models.CharField(
+        max_length=128, choices=NUM_ROOMS_CHOICES, blank=True
+    )
+
+    number_of_roommates = models.CharField(
+        max_length=100, choices=NUM_ROOMMATES_CHOICES, blank=True
+    )
+
+    roommate_details = models.TextField(max_length=500, blank=True)
+
+    apartment_photo = models.ImageField(
+        default="default.png", upload_to="profile_pics"
+    )
+
+    furnished = models.BooleanField(default=True)
+
+    rent_per_person = models.PositiveIntegerField(default=0, blank=True)
+
+    lease_start_date = models.DateField(null=True, blank=True)
+
+    lease_end_date = models.DateField(null=True, blank=True)
 
     # preferences
 
@@ -168,6 +305,18 @@ class Profile(models.Model):
     )
     preference_course = models.CharField(
         max_length=128, choices=PREF_COURSE_CHOICES, default=NO_PREF
+    )
+    preference_sleep = models.CharField(
+        max_length=128, choices=PREF_SLEEP_CHOICES, default=NO_PREF
+    )
+    preference_study = models.CharField(
+        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+    )
+    preference_neat = models.CharField(
+        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+    )
+    preference_drug = models.CharField(
+        max_length=128, choices=PREF_DRUG_CHOICES, default=NO_PREF
     )
 
     email_confirmed = models.BooleanField(default=False)
