@@ -305,23 +305,24 @@ def search(request):
 
                 df = df.drop_duplicates(subset="zpid", keep="last")
 
-                df["zestimate"] = df["zestimate"].fillna(0)
-                df["best_deal"] = df["unformattedPrice"] - df["zestimate"]
-                df = df.sort_values(by="best_deal", ascending=True)
+                df['zestimate'] = df['zestimate'].fillna(0)
+                df['area'] = df['area'].fillna(0)
+                df['best_deal'] = df['unformattedPrice'] - df['zestimate']
+                df = df.sort_values(by='unformattedPrice', ascending=True)
 
                 results = (
                     df[
                         [
-                            "id",
-                            "address",
-                            "beds",
-                            "baths",
-                            "area",
-                            "price",
-                            "zestimate",
-                            "best_deal",
+                            'detailUrl',
+                            'address',
+                            'beds',
+                            'baths',
+                            'area',
+                            'price',
+                            'zestimate'
                         ]
                     ]
+                    .loc[df['beds'] >= 2.0]
                     .head(20)
                     .values.tolist()
                 )
