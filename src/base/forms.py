@@ -97,6 +97,7 @@ class ProfileForm(forms.ModelForm):
             "preference_study",  # preferred study conditions
             "preference_neat",  # neat or messy
             "preference_drug",  # drinks/smokes/neither
+            "preferred_apartment_location",
             "preference_country",
             "preference_course",
             "preference_sleep",  # preferred sleep patterns (late night vs. early morning)

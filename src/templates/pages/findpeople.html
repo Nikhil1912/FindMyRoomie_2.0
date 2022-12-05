@@ -70,6 +70,8 @@
                                 <p class="card-text"><b>Diet: </b>{{profile.diet}}</p>
                                 <p class="card-text"><b>Hometown: </b> {{profile.hometown}}</p>
                                 <p class="card-text"><b>Country: </b> {{profile.country.name}}</p>
+                                <p class="card-text"><b>Has an Apartment: </b> {{profile.have_property}}</p>
+                                <p class="card-text"><b>Preferred Apartment Location: </b>{{profile.preferred_apartment_location}}</p>
                                 <p class="card-text"><b>Degree: </b> {{profile.degree}}</p>
                                 <p class="card-text"><b>Course: </b> {{profile.course}}</p>
                                 <p class="card-text"><b>Sleep Style: </b> {{profile.sleep}}</p>
@@ -142,6 +144,16 @@
                                 <b>Course: </b>{{profile.course}}<br>
                             </div>
                             <div style="margin-top: 32px;">
+                                <div class="card-title"><b>Property Details</b></div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><b>Already have an apartment: </b>{{profile.have_property}}</li>
+                                    <li class="list-group-item"><b>City: </b>{{profile.city}}</li>
+                                    <li class="list-group-item"><b>General Details: </b>{{profile.general_location_details}}</li>
+                                    <li class="list-group-item"><b>Number of Rooms Total: </b>{{profile.number_of_rooms}}</li>
+                                    <li class="list-group-item"><b>Rent per Person: </b>{{profile.rent_per_person}}</li>
+                                </ul>
+                            </div>
+                            <div style="margin-top: 32px;">
                                 <div class="card-title"><b>Preferences</b></div>
                                 <ul class="list-group list-group-flush">
                                     <li class="list-group-item"><b>Gender: </b>{{profile.preference_gender}}
@@ -154,6 +166,7 @@
                                     <li class="list-group-item"><b>Diet: </b>{{profile.preference_diet}}</li>
                                     <li class="list-group-item"><b>Country: </b>{{profile.preference_country.name}}
                                     </li>
+                                    <li class="list-group-item"><b>Preferred Apartment Location: </b>{{profile.preferred_apartment_location}}</li>
                                 </ul>
                             </div>
 

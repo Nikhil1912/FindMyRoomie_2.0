@@ -300,6 +300,7 @@ class Profile(models.Model):
     preference_diet = models.CharField(
         max_length=128, choices=PREF_DIET_CHOICES, default=NO_PREF
     )
+    preferred_apartment_location = models.CharField(max_length=128, choices=CITY_CHOICES, blank=True)
     preference_country = CountryField(
         blank_label="No Preference", blank=True, default="No Preference"
     )
