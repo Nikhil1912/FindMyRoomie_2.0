@@ -1,5 +1,5 @@
 [![Test](https://github.com/Nikhil1912/FindMyRoomie_2.0/actions/workflows/Unit_Tests.yml/badge.svg)](https://github.com/Nikhil1912/FindMyRoomie_2.0/actions/workflows/Unit_Tests.yml)
-[![codecov](https://codecov.io/gh/Nikhil1912/FindMyRoomie_2.0/branch/main/graph/badge.svg?token=PCOHJETYCD)](https://codecov.io/gh/rohitgeddam/FindMyRoomie)
+[![codecov](https://codecov.io/gh/Nikhil1912/FindMyRoomie_2.0/branch/main/graph/badge.svg?token=NM9D20U387)](https://codecov.io/gh/Nikhil1912/FindMyRoomie_2.0)
 [![Test](https://github.com/Nikhil1912/FindMyRoomie_2.0/actions/workflows/Linting.yml/badge.svg)](https://github.com/Nikhil1912/FindMyRoomie_2.0/actions/workflows/Linting.yml)
 ![CodeQL](https://github.com/Nikhil1912/FindMyRoomie_2.0/workflows/CodeQL/badge.svg)
 [![code_size](https://img.shields.io/github/languages/code-size/Nikhil1912/FindMyRoomie_2.0)](https://github.com/Nikhil1912/FindMyRoomie_2.0) 
