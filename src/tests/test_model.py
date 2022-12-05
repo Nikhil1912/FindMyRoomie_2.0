@@ -46,6 +46,7 @@ class TestModels(TestCase):
         profile.rent_per_person = 200
         profile.preference_gender = "Male"
         profile.preference_country = "India"
+        profile.preferred_apartment_location = "Raleigh"
         profile.preference_degree = "Masters Program (MS)"
         profile.preference_course = "Computer Science"
         profile.preference_diet = "Non Veg"
@@ -73,6 +74,7 @@ class TestModels(TestCase):
         self.assertEqual(profile.rent_per_person, 200)
         self.assertEqual(profile.preference_gender, "Male")
         self.assertEqual(profile.preference_country, "India")
+        self.assertEqual(profile.preferred_apartment_location, "Raleigh")
         self.assertEqual(profile.preference_degree, "Masters Program (MS)")
         self.assertEqual(profile.preference_course, "Computer Science")
         self.assertEqual(profile.preference_diet, "Non Veg")
