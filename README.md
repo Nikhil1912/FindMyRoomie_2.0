@@ -19,7 +19,7 @@
 
 The software is free for use by anyone, and we also welcome any contributions to improve our software. Please read our [CONTRIBUTING.md](https://github.com/rohitgeddam/FindMyRoomie/blob/main/CONTRIBUTING.md) file for more details). If you would like to cite our repository, please check our [CITATION.cff](https://github.com/rohitgeddam/FindMyRoomie/blob/main/CITATION.cff) file.
 
-To jump ahead to installation instructions, click [here](##-Steps-to-set up-the-project-on-your-local-machine)
+To jump ahead to installation instructions, click [here](#steps-to-set-up-the-project-on-your-local-machine)
 
 ## Features of our software
 
@@ -57,7 +57,7 @@ Allows existing users to login to our website using their credentials.
 
 #### 3. Resetting your password:
 
-In case the user forgets the password, they can enter their registered email id in the 'Forgot your passoword?' tab. An email with a link to set a new password will be sent to the email. Clicking the link will redirect the user to reset their password, and, tada! Password reset!!! 
+In case the user forgets the password, they can enter their registered email id in the 'Forgot your password?' tab. An email with a link to set a new password will be sent to the email. Clicking the link will redirect the user to reset their password, and, tada! Password reset!!! 
 
 <p align = "center">
 <img width = "800" src ="https://user-images.githubusercontent.com/73664200/194785779-0eccfaba-c79d-4be0-9ee9-d4dee35b804e.png">
@@ -69,7 +69,7 @@ In case the user forgets the password, they can enter their registered email id 
 
 #### 3. Welcome page:
 
-A page with happy Mr. and Mrs. Wolf enjoying each other's company in the background, just like you and your roommates would be :heart_on_fire:. 
+A page with happy two happy wolves enjoying each other's company in the background, just like you and your roommates will be :heart_on_fire:. 
 
 <p align = "center">
 <img width = "800" src ="https://user-images.githubusercontent.com/73664200/194784000-b3126f63-d5fb-469b-a011-c82ae0df1ce1.png">
@@ -86,7 +86,7 @@ Allows you to introduce whom you are to your future roommate! You are given the 
 
  #### 5. Find people:
   
- Lists the people looking for roommates just like you. Our "Wolf Filter" lets you filter candidates based on your preferences :wolf:. Be choosy!!	
+ Lists the people looking for roommates just like you. Our "Wolf Filter" lets you filter candidates based on your preferences :wolf:. Be choosy!	
  
  <p align = "center">
 <img width = "800" src ="https://user-images.githubusercontent.com/73664200/194784052-7b3c491d-827a-4404-a3d1-35996416ba24.png">
