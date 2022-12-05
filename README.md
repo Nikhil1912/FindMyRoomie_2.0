@@ -19,6 +19,7 @@
 
 The software is free for use by anyone, and we also welcome any contributions to improve our software. Please read our [CONTRIBUTING.md](https://github.com/rohitgeddam/FindMyRoomie/blob/main/CONTRIBUTING.md) file for more details). If you would like to cite our repository, please check our [CITATION.cff](https://github.com/rohitgeddam/FindMyRoomie/blob/main/CITATION.cff) file.
 
+To jump ahead to installation instructions, click [here](##-Steps-to-set up-the-project-on-your-local-machine)
 
 ## Features of our software
 
@@ -90,9 +91,9 @@ Allows you to introduce whom you are to your future roommate! You are given the 
  <p align = "center">
 <img width = "800" src ="https://user-images.githubusercontent.com/73664200/194784052-7b3c491d-827a-4404-a3d1-35996416ba24.png">
  
- #### 6. My room:
+ #### 6. Recommended matches:
    
-Lists your roommates (feature not available yet) and provides roommate suggestions based on your preferences. The similarity scores with other roommate seekers are calculated based on Manhattan Distance, and the people with the top scores are shown as suggestions. 
+Lists your roommates and provides roommate suggestions based on your preferences. The similarity scores with other roommate seekers are calculated based on Manhattan Distance, and the people with the top scores are shown as suggestions. 
  
   <p align = "center">
 <img width = "800" src ="https://user-images.githubusercontent.com/73664200/194784074-5faf5f21-199c-4b06-966f-74a48fb7a30f.png">
@@ -100,7 +101,7 @@ Lists your roommates (feature not available yet) and provides roommate suggestio
    
 #### 7. About
 
-Elaborates about the project and provides details about the contributors along with a link to our documentation.
+Elaborates on the project and provides details about the contributors along with a link to our documentation.
  
 <p align = "center">
 <img width = "800" src ="https://user-images.githubusercontent.com/73664200/194790928-2f494b10-761f-4ff1-826d-bffcbad2e707.png"> 
@@ -286,21 +287,16 @@ Our current release does not provide you with a mechanism to remove your data di
 
 ### 3 months milestone:
 
-1. Include apartment details in the profile section. The details could include (but are not restricted to) the address of the apartment, the apartment BHK and size, and rent. Users who have already secured a property and are looking for roommates to occupy them could use this functionality.
-2. Provide an update for the 'My Room' page, giving users the option to include and display their finalized roommates.
-3. Create a platform within the website that allows homeowners to lease or sublease their apartments.
-4. Suggest properties based on user filters by scraping it from the web and update the matching algorithm.
-5. Implement a chat room that allows users to chat with one another in-webapp. 
+1. Provide an update for the 'My Room' page, giving users the option to include and display their finalized roommates.
+2. Suggest properties based on user filters by scraping it from the web and update the matching algorithm.
 
 ### 6 months milestone:
 
-6. Create a mobile application and publish it on App Store and Google Play Store
-7. Implement a subleasing option.
-8. Improve the matching algorithm.
+3. Create a mobile application and publish it on App Store and Google Play Store
 
 ### 9 months milestone:
 
-8. Partner with local property agents like Wilson Properties, Trinity Properties, etc. to list their properties on our website. 
+4. Partner with local property agents like Wilson Properties, Trinity Properties, etc. to list their properties on our website. 
 
 
 ## Contact us:
@@ -316,16 +312,10 @@ Distributed under the MIT License. See `LICENSE` for more information
 ## Support:
 Questions about the software? Kindly contact us through one of the following routes. We are happy to answer all your questions regarding the software. 
 
-Feel free to reach out to us in case you encounter issues in the software, for example, issues in signing up, logging in, or any othe features. 
+Feel free to reach out to us in case you encounter issues in the software, for example, issues in signing up, logging in, or any other features. 
 
 <a href = "https://github.com/rohitgeddam/FindMyRoomie/discussions">  
-<img width = "35px" src = "https://user-images.githubusercontent.com/73664200/194786118-21d6c5d7-9950-4a8f-94a1-896358d21437.png"/>
-</a>
-&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href = "https://twitter.com/findmyroomie_nc">  
-<img width = "35px" src = "https://raw.githubusercontent.com/peterthehan/peterthehan/master/assets/twitter.svg"/>
-</a> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<a href = "mailto:ncsu.findmyroomie@gmail.com">
+
+<a href = "mailto:ncsu.findmyroomie_2.0@gmail.com">
 <img width = "35px" src = "https://user-images.githubusercontent.com/73664200/194786335-12b1d3a6-b272-4896-9bd7-d615e28847f3.png"/>
 </a>

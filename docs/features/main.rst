@@ -101,10 +101,10 @@ lets you filter candidates based on your preferences. Be choosy!!
 .. image:: findpeople.png
   :width: 600
 
-10. My room:
+10. Recommended matches:
 ^^^^^^^^^^^^
 
-Lists your roommates (feature not available yet) and provides roommate
+Lists your roommates and provides roommate
 suggestions based on your preferences. The similarity scores with other
 roommate seekers are calculated based on Manhattan Distance, and the
 people with the top scores are shown as suggestions.
