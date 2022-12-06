@@ -289,6 +289,7 @@ Our current release does not provide you with a mechanism to remove your data di
 
 1. Provide an update for the 'My Room' page, giving users the option to include and display their finalized roommates.
 2. Suggest properties based on user filters by scraping it from the web and update the matching algorithm.
+3. Allowing users to set weights for filters to give more value to there preferences and thereby making a customized search.
 
 ### 6 months milestone:
 
