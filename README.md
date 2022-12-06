@@ -293,11 +293,11 @@ Our current release does not provide you with a mechanism to remove your data di
 
 ### 6 months milestone:
 
-3. Create a mobile application and publish it on App Store and Google Play Store
+4. Create a mobile application and publish it on App Store and Google Play Store
 
 ### 9 months milestone:
 
-4. Partner with local property agents like Wilson Properties, Trinity Properties, etc. to list their properties on our website. 
+5. Partner with local property agents like Wilson Properties, Trinity Properties, etc. to list their properties on our website. 
 
 
 ## Contact us:
