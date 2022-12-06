@@ -314,7 +314,7 @@ class Profile(models.Model):
         max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
     )
     preference_neat = models.CharField(
-        max_length=128, choices=PREF_STUDY_CHOICES, default=NO_PREF
+        max_length=128, choices=PREF_NEAT_CHOICES, default=NO_PREF
     )
     preference_drug = models.CharField(
         max_length=128, choices=PREF_DRUG_CHOICES, default=NO_PREF
